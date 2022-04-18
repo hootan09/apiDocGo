@@ -1,4 +1,4 @@
-### Documention
+### Built in Code Documention
 ```sh
 $ godoc -http=127.0.0.1:6060 
 #or just the port 
