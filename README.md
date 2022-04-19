@@ -18,3 +18,5 @@ Todo:
 - [ ] parse @apiHeaderExample
 - [ ] parse @apiHeader
 - [ ] parse @apiParamExample
+- [ ] parse @apiUse
+- [ ] parse @apiPermission
