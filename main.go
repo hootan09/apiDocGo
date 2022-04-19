@@ -21,7 +21,12 @@ func main() {
 	// content := `Category (official)`
 	// result := parser.Api_group(content)
 
-	content := `GetCategory`
-	result := parser.Api_name(content)
+	// content := `GetCategory`
+	// result := parser.Api_name(content)
+
+	// content := `{Number} id <code>id</code> of the user.`
+	content := `{String{1..4}} [user.name='John Doe'] Users fullname.`
+	result := parser.Api_param(content)
 	fmt.Printf("%+v\n", result)
+
 }

@@ -12,4 +12,4 @@ Todo:
 - [X] Parse @apiExample
 - [X] parse @apiGroup
 - [X] parse @apiName
-- [ ] parse @apiParam
+- [X] parse @apiParam (Must be Fixed in iterate map)
