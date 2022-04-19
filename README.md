@@ -20,3 +20,7 @@ Todo:
 - [ ] parse @apiParamExample
 - [ ] parse @apiUse
 - [ ] parse @apiPermission
+- [ ] parse @apiQuery
+- [ ] parse @apiSampleRequest
+- [ ] parse @apiSuccessExample
+- [ ] parse @apiSuccess
