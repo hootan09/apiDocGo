@@ -13,7 +13,6 @@ type ApiDefineStruct struct {
 }
 
 // Parse @apiDefine content
-// Return Struct with parameters {Name, Title, Description}
 func Api_define(content string, log ...bool) *ApiDefineStruct {
 	if len(log) > 0 {
 		fmt.Println("Parse @apiDefine with Content: ", content)

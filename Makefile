@@ -1,5 +1,5 @@
 doc:
-	godoc -hhtp=:8080
+	godoc -http=:8080
 build:
 	go build .
 

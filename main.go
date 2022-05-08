@@ -25,8 +25,46 @@ func main() {
 	// result := parser.Api_name(content)
 
 	// content := `{Number} id <code>id</code> of the user.`
-	content := `{String{1..4}} [user.name='John Doe'] Users fullname.`
-	result := parser.Api_param(content)
+	// content := `{String{1..4}} [user.name='John Doe'] Users fullname.`
+	// result := parser.Api_param(content)
+
+	// content := `{String} name Name of the User.`
+	// result := parser.Api_body(content)
+
+	// content := ` Response (example):
+	// *     HTTP/1.1 401 Not Authenticated
+	// *     {
+	// *       "error": "NoAccessRight"
+	// *     }`
+	// result := parser.Api_errorExample(content)
+
+	// content := `(500 Internal Server Error) InternalServerError The server encountered an internal error.`
+	// result := parser.Api_error(content)
+
+	// content := ` {Header} Header-Example
+	// *     "Authorization: token 5f048fe"`
+	// result := parser.Api_headerExample(content)
+
+	// content := `{String} Authorization The token can be generated from your user profile.`
+	// result := parser.Api_header(content)
+
+	content := `{json} Some json code:
+	*   {
+	*     "user": "Sample User",
+	*      "payload": {
+	*        "test": [
+	*          "code": "
+	*            public class HelloWorldTest {
+	*              HelloWorld hw = new HelloWorld();
+	*              @Test
+	*              public void testOkay {
+	*              assertEquals(\"HelloWorld\", hw.getMsg());
+	*            }
+	*         }"
+	*        ]
+	*      }
+	*   }`
+	result := parser.Api_paramExample(content)
 	fmt.Printf("%+v\n", result)
 
 }

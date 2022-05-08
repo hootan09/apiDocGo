@@ -13,7 +13,6 @@ type ApiStruct struct {
 }
 
 // Parse @api Content
-// Return Struct with parameters {Type, Url, Title}
 func Api(content string, log ...bool) *ApiStruct {
 	if len(log) > 0 {
 		fmt.Println("Parse @api with Content: ", content)

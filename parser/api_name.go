@@ -11,7 +11,6 @@ type ApiNameStruct struct {
 }
 
 // Parse @apiName content
-// Return Struct with parameters {Title}
 func Api_name(content string, log ...bool) *ApiNameStruct {
 	if len(log) > 0 {
 		fmt.Println("Parse @apiName with Content: ", content)
