@@ -48,23 +48,33 @@ func main() {
 	// content := `{String} Authorization The token can be generated from your user profile.`
 	// result := parser.Api_header(content)
 
-	content := `{json} Some json code:
-	*   {
-	*     "user": "Sample User",
-	*      "payload": {
-	*        "test": [
-	*          "code": "
-	*            public class HelloWorldTest {
-	*              HelloWorld hw = new HelloWorld();
-	*              @Test
-	*              public void testOkay {
-	*              assertEquals(\"HelloWorld\", hw.getMsg());
-	*            }
-	*         }"
-	*        ]
-	*      }
-	*   }`
-	result := parser.Api_paramExample(content)
+	// content := `{json} Some json code:
+	// *   {
+	// *     "user": "Sample User",
+	// *      "payload": {
+	// *        "test": [
+	// *          "code": "
+	// *            public class HelloWorldTest {
+	// *              HelloWorld hw = new HelloWorld();
+	// *              @Test
+	// *              public void testOkay {
+	// *              assertEquals(\"HelloWorld\", hw.getMsg());
+	// *            }
+	// *         }"
+	// *        ]
+	// *      }
+	// *   }`
+	// result := parser.Api_paramExample(content)
+
+	// content := `{String=Aerial,Land,Underwater} view=Aerial Type of view.`
+	// result := parser.Api_query(content)
+
+	content := `{json} Success-Example
+	*     HTTP/1.1 200 OK
+	*     {
+	*         "result": "ok"
+	*     }`
+	result := parser.Api_successExample(content)
 	fmt.Printf("%+v\n", result)
 
 }

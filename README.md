@@ -19,8 +19,8 @@ Todo:
 - [X] parse @apiHeader
 - [-] parse @apiParamExample
 - [X] parse @apiUse
-- [ ] parse @apiPermission
-- [ ] parse @apiQuery
-- [ ] parse @apiSampleRequest
-- [ ] parse @apiSuccessExample
+- [X] parse @apiPermission
+- [X] parse @apiQuery
+- [X] parse @apiSampleRequest
+- [X] parse @apiSuccessExample
 - [ ] parse @apiSuccess
