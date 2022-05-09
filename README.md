@@ -23,4 +23,6 @@ Todo:
 - [X] parse @apiQuery
 - [X] parse @apiSampleRequest
 - [X] parse @apiSuccessExample
-- [ ] parse @apiSuccess
+- [X] parse @apiSuccess
+- [ ] READER Functionality
+- [ ] Writer Functionality
