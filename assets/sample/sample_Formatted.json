@@ -1,0 +1,1085 @@
+[
+    {type: "get",url: "/api/v1/admins/user/:id",title: "get user profile by admin",permission: [
+            {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+            }
+        ],group: "Admins",description: "<p>get user profile by admin token</p> <p>only the <code>admin with token</code> can get it</p>",header: {fields: {Header: [
+                    {group: "Header",type: "String",optional:!1,field: "authorization",description: "<p>Users unique token <code>&quot;Bearer XXXXXXXXXXXXX&quot;</code>.</p>"
+                    }
+                ]
+            },examples: [
+                {title: "Header-Example:",content:`{
+                        "authorization": "Bearer eyJhbGciOiJIUzI1..."
+                    }`,type: "json"
+                }
+            ]
+        },parameter: {fields: {Parameter: [
+                    {group: "Parameter",type: "String",optional:!1,field: "id",description: "<p>id of user (userId)</p>"
+                    }
+                ]
+            }
+        },success: {fields: {
+                "Success 200": [
+                    {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                    },
+                    {group: "Success 200",type: "Object",optional:!1,field: "user",description: "<p>Return user information.</p>"
+                    }
+                ]
+            },examples: [
+                {title: "Success",content:`HTTP/1.1 200 ok
+{
+                        "success": true,
+                        "user": {...
+                        }`,type: "json"
+                    }
+                ]
+            },error: {fields: {
+                    "Error 4xx": [
+                        {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                        },
+                        {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                        }
+                    ]
+                },examples: [
+                    {title: "Error-Response:",content:`   HTTP/1.1 401 unautorized
+{
+                            "success": false,
+                            "error": "Unautorized"
+                        }`,type: "json"
+                    },
+                    {title: "Error-Response:",content:`   HTTP/1.1 404 notFound
+{
+                            "success": false,
+                            "error": "Invalid ObjectId"
+                        }`,type: "json"
+                    },
+                    {title: "Error-Response:",content:`   HTTP/1.1 400 NotFound
+{
+                            "success": false,
+                            "error": "User Not Found"
+                        }`,type: "json"
+                    }
+                ]
+            },version: "0.0.0",filename: "admin.js",groupTitle: "Admins",name: "GetApiV1AdminsUserId"
+        },
+        {type: "get",url: "/api/v1/admins/users",title: "get users list by admin",permission: [
+                {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+                }
+            ],group: "Admins",description: "<p>get users list profile by admin token</p> <p>only the <code>admin with token</code> can get it</p>",header: {fields: {Header: [
+                        {group: "Header",type: "String",optional:!1,field: "authorization",description: "<p>Users unique token <code>&quot;Bearer XXXXXXXXXXXXX&quot;</code>.</p>"
+                        }
+                    ]
+                },examples: [
+                    {title: "Header-Example:",content:`{
+                            "authorization": "Bearer eyJhbGciOiJIUzI1..."
+                        }`,type: "json"
+                    }
+                ]
+            },success: {fields: {
+                    "Success 200": [
+                        {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                        },
+                        {group: "Success 200",type: "Object[]",optional:!1,field: "users",description: "<p>Return users list information.</p>"
+                        }
+                    ]
+                },examples: [
+                    {title: "Success",content:`HTTP/1.1 200 ok
+{
+                            "success": true,
+                            "users": [...
+                            ]`,type: "json"
+                        }
+                    ]
+                },error: {fields: {
+                        "Error 4xx": [
+                            {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                            },
+                            {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                            }
+                        ]
+                    },examples: [
+                        {title: "Error-Response:",content:`   HTTP/1.1 401 unautorized
+{
+                                "success": false,
+                                "error": "Unautorized"
+                            }`,type: "json"
+                        },
+                        {title: "Error-Response:",content:`   HTTP/1.1 400 NotFound
+{
+                                "success": false,
+                                "error": "Users Not Found"
+                            }`,type: "json"
+                        }
+                    ]
+                },version: "0.0.0",filename: "admin.js",groupTitle: "Admins",name: "GetApiV1AdminsUsers"
+            },
+            {type: "put",url: "/api/v1/admins/updateprofile/",title: "update User Profile",permission: [
+                    {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+                    }
+                ],group: "Admins",description: "<p>update user profile by admin</p> <p>note only the <code>Admin</code> can update the Profile</p>",header: {fields: {Header: [
+                            {group: "Header",type: "String",optional:!1,field: "authorization",description: "<p>Users unique token <code>&quot;Bearer XXXXXXXXXXXXX&quot;</code>.</p>"
+                            }
+                        ]
+                    },examples: [
+                        {title: "Header-Example:",content:`{
+                                "authorization": "Bearer eyJhbGciOiJIUzI1..."
+                            }`,type: "json"
+                        }
+                    ]
+                },parameter: {fields: {Parameter: [
+                            {group: "Parameter",type: "Boolean",optional:!0,field: "active",description: "<p>activation of user</p>"
+                            },
+                            {group: "Parameter",type: "Array",optional:!0,field: "role",description: "<p>role of user <code>['admin', 'super', 'user']</code></p>"
+                            },
+                            {group: "Parameter",type: "String",optional:!0,field: "fireBaseToken",description: "<p>fireBaseToken for user</p>"
+                            },
+                            {group: "Parameter",type: "String",optional:!0,field: "firstName",description: "<p>first name of user</p>"
+                            },
+                            {group: "Parameter",type: "String",optional:!0,field: "lastName",description: "<p>last name of user</p>"
+                            },
+                            {group: "Parameter",type: "String",optional:!0,field: "profileImage",description: "<p>profileImage of user</p>"
+                            },
+                            {group: "Parameter",type: "String",optional:!0,field: "avatar",description: "<p>avatar of user</p>"
+                            },
+                            {group: "Parameter",type: "String",optional:!0,field: "state",description: "<p>id of state (Province)</p>"
+                            },
+                            {group: "Parameter",type: "String",optional:!0,field: "city",description: "<p>id of city</p>"
+                            },
+                            {group: "Parameter",type: "String",optional:!0,field: "address",description: "<p>address of user</p>"
+                            },
+                            {group: "Parameter",type: "String",optional:!0,field: "postalCode",description: "<p>postalCode of user</p>"
+                            },
+                            {group: "Parameter",type: "String",optional:!0,field: "location",description: "<p>location Array <code>[lat,lng]</code></p>"
+                            },
+                            {group: "Parameter",type: "String",optional:!0,field: "about",description: "<p>about of user</p>"
+                            }
+                        ]
+                    }
+                },success: {fields: {
+                        "Success 200": [
+                            {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                            },
+                            {group: "Success 200",type: "Object",optional:!1,field: "user",description: "<p>Return user information.</p>"
+                            }
+                        ]
+                    },examples: [
+                        {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                "success": true,
+                                "user": {...
+                                }`,type: "json"
+                            }
+                        ]
+                    },error: {fields: {
+                            "Error 4xx": [
+                                {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                },
+                                {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                }
+                            ]
+                        },examples: [
+                            {title: "Error-Response:",content:`   HTTP/1.1 500 InternalError
+{
+                                    "success": false,
+                                    "error": "Error in Update Data"
+                                }`,type: "json"
+                            },
+                            {title: "Error-Response:",content:`   HTTP/1.1 404 NotFound
+{
+                                    "success": false,
+                                    "error": "Email is Required!!"
+                                }`,type: "json"
+                            }
+                        ]
+                    },version: "0.0.0",filename: "admin.js",groupTitle: "Admins",name: "PutApiV1AdminsUpdateprofile"
+                },
+                {type: "ws",url: "/api/v1/admins/serverlogs",title: "get server Logs",group: "Admins",description: "<p>get server Logs by admin Token</p>",parameter: {fields: {Parameter: [
+                                {group: "Parameter",type: "String",optional:!1,field: "token",description: "<p>admin token</p>"
+                                }
+                            ]
+                        }
+                    },success: {fields: {
+                            "Success 200": [
+                                {group: "Success 200",type: "Object",optional:!1,field: "Object",description: "<p>String(object) must parse by json</p>"
+                                },
+                                {group: "Success 200",type: "String",optional:!1,field: "Object.message",description: "<p>server Logs</p>"
+                                }
+                            ]
+                        }
+                    },examples: [
+                        {title: "Example",content:`const ws = new WebSocket(url.href);
+ws.onopen = () => {
+    ws.send(JSON.stringify({token: token
+                                }));
+                            };
+ws.onmessage = (event) => {
+      const json = JSON.parse(event.data);
+      try {
+        if (json.message) {
+          console.log(json.message);
+                                    }
+                                } catch (err) {
+        console.log(err);
+                                }
+                            };`,type: "json"
+                        }
+                    ],version: "0.0.0",filename: "admin.js",groupTitle: "Admins",name: "WsApiV1AdminsServerlogs"
+                },
+                {type: "delete",url: "/api/v1/blog/delete/:articleid",title: "remove article with id",permission: [
+                        {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+                        }
+                    ],group: "Blog",description: "<p>remove article with articleid by admin token</p>",parameter: {fields: {Parameter: [
+                                {group: "Parameter",type: "String",optional:!1,field: "id",description: "<p>id of article</p>"
+                                }
+                            ]
+                        }
+                    },success: {fields: {
+                            "Success 200": [
+                                {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                },
+                                {group: "Success 200",type: "Object",optional:!1,field: "message",description: ""
+                                }
+                            ]
+                        },examples: [
+                            {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                    "success": true,
+                                    "message": "Article Deleted"`,type: "json"
+                                }
+                            ]
+                        },error: {fields: {
+                                "Error 4xx": [
+                                    {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                    },
+                                    {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                    }
+                                ]
+                            },examples: [
+                                {title: "Error-Response:",content:`   HTTP/1.1 500 InternalError
+{
+                                        "success": false,
+                                        "error": "Server Error"
+                                    }`,type: "json"
+                                },
+                                {title: "Error-Response:",content:`   HTTP/1.1 400 Not Found
+{
+                                        "success": false,
+                                        "error": "invalid id"
+                                    }`,type: "json"
+                                }
+                            ]
+                        },version: "0.0.0",filename: "blog.js",groupTitle: "Blog",name: "DeleteApiV1BlogDeleteArticleid"
+                    },
+                    {type: "get",url: "/api/v1/blog/",title: "get all articles",group: "Blog",description: "<p>get all article base on createdAt -1</p>",success: {fields: {
+                                "Success 200": [
+                                    {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                    },
+                                    {group: "Success 200",type: "Object",optional:!1,field: "articles",description: ""
+                                    }
+                                ]
+                            },examples: [
+                                {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                        "success": true,
+                                        "articles": [...
+                                        ]`,type: "json"
+                                    }
+                                ]
+                            },error: {fields: {
+                                    "Error 4xx": [
+                                        {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                        },
+                                        {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                        }
+                                    ]
+                                },examples: [
+                                    {title: "Error-Response:",content:`   HTTP/1.1 500 InternalError
+{
+                                            "success": false,
+                                            "error": "Server Error"
+                                        }`,type: "json"
+                                    }
+                                ]
+                            },version: "0.0.0",filename: "blog.js",groupTitle: "Blog",name: "GetApiV1Blog"
+                        },
+                        {type: "get",url: "/api/v1/blog/:articleid",title: "get article by articleid",group: "Blog",description: "<p>get article by articleid</p>",parameter: {fields: {Parameter: [
+                                        {group: "Parameter",type: "String",optional:!1,field: "articleid",description: "<p>id of article</p>"
+                                        }
+                                    ]
+                                }
+                            },success: {fields: {
+                                    "Success 200": [
+                                        {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                        },
+                                        {group: "Success 200",type: "Object",optional:!1,field: "articles",description: ""
+                                        }
+                                    ]
+                                },examples: [
+                                    {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                            "success": true,
+                                            "article": {...
+                                            }`,type: "json"
+                                        }
+                                    ]
+                                },error: {fields: {
+                                        "Error 4xx": [
+                                            {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                            },
+                                            {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                            }
+                                        ]
+                                    },examples: [
+                                        {title: "Error-Response:",content:`   HTTP/1.1 500 InternalError
+{
+                                                "success": false,
+                                                "error": "Server Error"
+                                            }`,type: "json"
+                                        },
+                                        {title: "Error-Response:",content:`   HTTP/1.1 400 Not Found
+{
+                                                "success": false,
+                                                "error": "Bad ObjectId"
+                                            }`,type: "json"
+                                        }
+                                    ]
+                                },version: "0.0.0",filename: "blog.js",groupTitle: "Blog",name: "GetApiV1BlogArticleid"
+                            },
+                            {type: "post",url: "/api/v1/blog/add/",title: "add new article",permission: [
+                                    {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+                                    }
+                                ],group: "Blog",description: "<p>add new article by admin token</p>",parameter: {fields: {Parameter: [
+                                            {group: "Parameter",type: "String",optional:!1,field: "title",description: "<p>title of article</p>"
+                                            },
+                                            {group: "Parameter",type: "String",optional:!0,field: "description",description: "<p>description of article</p>"
+                                            },
+                                            {group: "Parameter",type: "String",optional:!0,field: "body",description: "<p>body of article</p>"
+                                            },
+                                            {group: "Parameter",type: "Array",optional:!0,field: "tag",description: "<p>tags of article</p>"
+                                            },
+                                            {group: "Parameter",type: "String",optional:!0,field: "primaryImage",description: "<p>article head image</p>"
+                                            },
+                                            {group: "Parameter",type: "Boolean",optional:!0,field: "active",defaultValue: "true",description: "<p>active default is true</p>"
+                                            }
+                                        ]
+                                    }
+                                },success: {fields: {
+                                        "Success 200": [
+                                            {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                            },
+                                            {group: "Success 200",type: "Object",optional:!1,field: "article",description: ""
+                                            }
+                                        ]
+                                    },examples: [
+                                        {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                "success": true,
+                                                "article": {...
+                                                }`,type: "json"
+                                            }
+                                        ]
+                                    },error: {fields: {
+                                            "Error 4xx": [
+                                                {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                },
+                                                {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                }
+                                            ]
+                                        },examples: [
+                                            {title: "Error-Response:",content:`   HTTP/1.1 500 InternalError
+{
+                                                    "success": false,
+                                                    "error": "Server Error"
+                                                }`,type: "json"
+                                            },
+                                            {title: "Error-Response:",content:`   HTTP/1.1 400 Not Found
+{
+                                                    "success": false,
+                                                    "error": "title is Required"
+                                                }`,type: "json"
+                                            }
+                                        ]
+                                    },version: "0.0.0",filename: "blog.js",groupTitle: "Blog",name: "PostApiV1BlogAdd"
+                                },
+                                {type: "put",url: "/api/v1/blog/edit/:articleid",title: "edit article",permission: [
+                                        {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+                                        }
+                                    ],group: "Blog",description: "<p>edit article by admin token</p>",parameter: {fields: {Parameter: [
+                                                {group: "Parameter",type: "String",optional:!1,field: "articleid",description: "<p>id of article</p>"
+                                                },
+                                                {group: "Parameter",type: "String",optional:!1,field: "title",description: "<p>title of article</p>"
+                                                },
+                                                {group: "Parameter",type: "String",optional:!0,field: "description",description: "<p>description of article</p>"
+                                                },
+                                                {group: "Parameter",type: "String",optional:!0,field: "body",description: "<p>body of article</p>"
+                                                },
+                                                {group: "Parameter",type: "Array",optional:!0,field: "tag",description: "<p>tags of article</p>"
+                                                },
+                                                {group: "Parameter",type: "String",optional:!0,field: "primaryImage",description: "<p>article head image</p>"
+                                                },
+                                                {group: "Parameter",type: "Boolean",optional:!0,field: "active",defaultValue: "true",description: "<p>active default is true</p>"
+                                                }
+                                            ]
+                                        }
+                                    },success: {fields: {
+                                            "Success 200": [
+                                                {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                },
+                                                {group: "Success 200",type: "Object",optional:!1,field: "article",description: ""
+                                                }
+                                            ]
+                                        },examples: [
+                                            {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                    "success": true,
+                                                    "article": {...
+                                                    }`,type: "json"
+                                                }
+                                            ]
+                                        },error: {fields: {
+                                                "Error 4xx": [
+                                                    {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                    },
+                                                    {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                    }
+                                                ]
+                                            },examples: [
+                                                {title: "Error-Response:",content:`   HTTP/1.1 500 InternalError
+{
+                                                        "success": false,
+                                                        "error": "Server Error"
+                                                    }`,type: "json"
+                                                },
+                                                {title: "Error-Response:",content:`   HTTP/1.1 400 Not Found
+{
+                                                        "success": false,
+                                                        "error": "Bad ObjectId"
+                                                    }`,type: "json"
+                                                }
+                                            ]
+                                        },version: "0.0.0",filename: "blog.js",groupTitle: "Blog",name: "PutApiV1BlogEditArticleid"
+                                    },
+                                    {type: "post",url: "/api/v1/uploader/uploadimage",title: "UploadImage",permission: [
+                                            {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+                                            }
+                                        ],group: "Uploader",description: "<p>Upload Image/Images to Server</p> <p><b>note:</b> the size of Image must be <code>less than 5 mb</code> image always Converted to <code>png</code> format</p>",header: {fields: {Header: [
+                                                    {group: "Header",type: "String",optional:!1,field: "authorization",description: "<p>Users unique token.</p>"
+                                                    }
+                                                ]
+                                            },examples: [
+                                                {title: "Header-Example:",content:`{
+                                                        "authorization": "Bearer eyJhbGciOiJIUzI1..."
+                                                    }`,type: "json"
+                                                }
+                                            ]
+                                        },parameter: {fields: {Parameter: [
+                                                    {group: "Parameter",type: "File",optional:!1,field: "file",description: "<p>upload image</p>"
+                                                    }
+                                                ]
+                                            }
+                                        },success: {fields: {
+                                                "Success 200": [
+                                                    {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                    },
+                                                    {group: "Success 200",type: "string[]",optional:!1,field: "urls",description: "<p>images url array</p>"
+                                                    }
+                                                ]
+                                            },examples: [
+                                                {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                        "success": true,
+                                                        "urls": []`,type: "json"
+                                                    }
+                                                ]
+                                            },error: {fields: {
+                                                    "Error 4xx": [
+                                                        {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                        },
+                                                        {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                        }
+                                                    ]
+                                                },examples: [
+                                                    {title: "Error-Response:",content:`   HTTP/1.1 401 unautorized
+{
+                                                            "success": false,
+                                                            "error": "Unauthorized"
+                                                        }`,type: "json"
+                                                    },
+                                                    {title: "Error-Response:",content:`   HTTP/1.1 400 badrequest
+{
+                                                            "success": false,
+                                                            "error": "File Not Found"
+                                                        }`,type: "json"
+                                                    },
+                                                    {title: "Error-Response:",content:`   HTTP/1.1 400 badrequest
+{
+                                                            "success": false,
+                                                            "error": "the Image File for <File name> Mustbe Less Than 5000000 byte (5 MegaByte)"
+                                                        }`,type: "json"
+                                                    }
+                                                ]
+                                            },version: "0.0.0",filename: "uploader.js",groupTitle: "Uploader",name: "PostApiV1UploaderUploadimage"
+                                        },
+                                        {type: "get",url: "/api/v1/users/activation/:id/:emailVerificationId",title: "Activate User Account by Email",group: "Users",description: "<p>Activate User Account by emailVerificationId</p>",parameter: {fields: {Parameter: [
+                                                        {group: "Parameter",type: "String",optional:!1,field: "id",description: "<p>id of user (userId)</p>"
+                                                        },
+                                                        {group: "Parameter",type: "String",optional:!1,field: "emailVerificationId",description: "<p>emailVerificationId that Mailed to User</p>"
+                                                        }
+                                                    ]
+                                                }
+                                            },success: {fields: {
+                                                    "Success 200": [
+                                                        {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                        },
+                                                        {group: "Success 200",type: "String",optional:!1,field: "message",description: "<p>Respond Message</p>"
+                                                        }
+                                                    ]
+                                                },examples: [
+                                                    {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                            "success": true,
+                                                            "message": "Your Account is Activate Now"`,type: "json"
+                                                        }
+                                                    ]
+                                                },error: {fields: {
+                                                        "Error 4xx": [
+                                                            {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                            },
+                                                            {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                            }
+                                                        ]
+                                                    },examples: [
+                                                        {title: "Error-Response:",content:`   HTTP/1.1 404 notFound
+{
+                                                                "success": false,
+                                                                "error": "Invalid ObjectId"
+                                                            }`,type: "json"
+                                                        },
+                                                        {title: "Error-Response:",content:`   HTTP/1.1 404 notFound
+{
+                                                                "success": false,
+                                                                "error": "Invalid emailVerificationId"
+                                                            }`,type: "json"
+                                                        },
+                                                        {title: "Error-Response:",content:`   HTTP/1.1 400 NotFound
+{
+                                                                "success": false,
+                                                                "error": "User Not Found"
+                                                            }`,type: "json"
+                                                        }
+                                                    ]
+                                                },version: "0.0.0",filename: "user.js",groupTitle: "Users",name: "GetApiV1UsersActivationIdEmailverificationid"
+                                            },
+                                            {type: "get",url: "/api/v1/users/myprofile",title: "myprofile",permission: [
+                                                    {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+                                                    }
+                                                ],group: "Users",description: "<p>get user profile by user token</p> <p>only the <code>user with token</code> can get it</p>",header: {fields: {Header: [
+                                                            {group: "Header",type: "String",optional:!1,field: "authorization",description: "<p>Users unique token <code>&quot;Bearer XXXXXXXXXXXXX&quot;</code>.</p>"
+                                                            }
+                                                        ]
+                                                    },examples: [
+                                                        {title: "Header-Example:",content:`{
+                                                                "authorization": "Bearer eyJhbGciOiJIUzI1..."
+                                                            }`,type: "json"
+                                                        }
+                                                    ]
+                                                },success: {fields: {
+                                                        "Success 200": [
+                                                            {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                            },
+                                                            {group: "Success 200",type: "Object",optional:!1,field: "user",description: "<p>Return user information.</p>"
+                                                            }
+                                                        ]
+                                                    },examples: [
+                                                        {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                                "success": true,
+                                                                "user": {...
+                                                                }`,type: "json"
+                                                            }
+                                                        ]
+                                                    },error: {fields: {
+                                                            "Error 4xx": [
+                                                                {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                                },
+                                                                {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                                }
+                                                            ]
+                                                        },examples: [
+                                                            {title: "Error-Response:",content:`   HTTP/1.1 401 unautorized
+{
+                                                                    "success": false,
+                                                                    "error": "Unautorized"
+                                                                }`,type: "json"
+                                                            },
+                                                            {title: "Error-Response:",content:`   HTTP/1.1 404 notFound
+{
+                                                                    "success": false,
+                                                                    "error": "Invalid ObjectId"
+                                                                }`,type: "json"
+                                                            },
+                                                            {title: "Error-Response:",content:`   HTTP/1.1 400 InternalError
+{
+                                                                    "success": false,
+                                                                    "error": "Profile Not Found"
+                                                                }`,type: "json"
+                                                            }
+                                                        ]
+                                                    },version: "0.0.0",filename: "user.js",groupTitle: "Users",name: "GetApiV1UsersMyprofile"
+                                                },
+                                                {type: "post",url: "/api/v1/users/forgotpassword/",title: "Forgot Password",group: "Users",description: "<p>Forgot Password</p>",parameter: {fields: {Parameter: [
+                                                                {group: "Parameter",type: "String",optional:!1,field: "email",description: "<p>email of user</p>"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },success: {fields: {
+                                                            "Success 200": [
+                                                                {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                                },
+                                                                {group: "Success 200",type: "String",optional:!1,field: "message",description: ""
+                                                                }
+                                                            ]
+                                                        },examples: [
+                                                            {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                                    "success": true,
+                                                                    "message": "Reset Password Url Sent to Your Email"`,type: "json"
+                                                                }
+                                                            ]
+                                                        },error: {fields: {
+                                                                "Error 4xx": [
+                                                                    {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                                    },
+                                                                    {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                                    }
+                                                                ]
+                                                            },examples: [
+                                                                {title: "Error-Response:",content:`   HTTP/1.1 500 InternalError
+{
+                                                                        "success": false,
+                                                                        "error": "Server Error"
+                                                                    }`,type: "json"
+                                                                },
+                                                                {title: "Error-Response:",content:`   HTTP/1.1 404 notFound
+{
+                                                                        "success": false,
+                                                                        "error": "Email Not Found"
+                                                                    }`,type: "json"
+                                                                }
+                                                            ]
+                                                        },version: "0.0.0",filename: "user.js",groupTitle: "Users",name: "PostApiV1UsersForgotpassword"
+                                                    },
+                                                    {type: "post",url: "/api/v1/users/login",title: "get Token by login data",group: "Users",description: "<p>get Token by login data</p>",parameter: {fields: {Parameter: [
+                                                                    {group: "Parameter",type: "String",optional:!1,field: "email",description: "<p>email of user</p>"
+                                                                    },
+                                                                    {group: "Parameter",type: "String",optional:!1,field: "password",description: "<p>user password</p>"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },success: {fields: {
+                                                                "Success 200": [
+                                                                    {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                                    },
+                                                                    {group: "Success 200",type: "String",optional:!1,field: "token",description: "<p>Return token information.</p>"
+                                                                    },
+                                                                    {group: "Success 200",type: "String",optional:!1,field: "id",description: "<p>Return id of user.</p>"
+                                                                    }
+                                                                ]
+                                                            },examples: [
+                                                                {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                                        "success": true,
+                                                                        "token": "Bearer fdgfhggfhgh.....",
+                                                                        "id": '....'`,type: "json"
+                                                                    }
+                                                                ]
+                                                            },error: {fields: {
+                                                                    "Error 4xx": [
+                                                                        {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                                        },
+                                                                        {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                                        }
+                                                                    ]
+                                                                },examples: [
+                                                                    {title: "Error-Response:",content:`   HTTP/1.1 500 InternalError
+{
+                                                                            "success": false,
+                                                                            "error": "Error in Getting User Data"
+                                                                        }`,type: "json"
+                                                                    },
+                                                                    {title: "Error-Response:",content:`   HTTP/1.1 404 notFound
+{
+                                                                            "success": false,
+                                                                            "error": "User Not Found"
+                                                                        }`,type: "json"
+                                                                    },
+                                                                    {title: "Error-Response:",content:`   HTTP/1.1 401 Unauthorized
+{
+                                                                            "success": false,
+                                                                            "error": "Invalid Password"
+                                                                        }`,type: "json"
+                                                                    }
+                                                                ]
+                                                            },version: "0.0.0",filename: "user.js",groupTitle: "Users",name: "PostApiV1UsersLogin"
+                                                        },
+                                                        {type: "post",url: "/api/v1/users/register/",title: "register new user",group: "Users",description: "<p>register new user</p>",parameter: {fields: {Parameter: [
+                                                                        {group: "Parameter",type: "String",optional:!1,field: "email",description: "<p>email of user</p>"
+                                                                        },
+                                                                        {group: "Parameter",type: "String",optional:!1,field: "password",description: "<p>password of user <code>min length is 6</code></p>"
+                                                                        },
+                                                                        {group: "Parameter",type: "String",optional:!0,field: "firstName",description: "<p>first name of user</p>"
+                                                                        },
+                                                                        {group: "Parameter",type: "String",optional:!0,field: "lastName",description: "<p>last name of user</p>"
+                                                                        },
+                                                                        {group: "Parameter",type: "String",optional:!0,field: "image",description: "<p>avatar of user</p>"
+                                                                        },
+                                                                        {group: "Parameter",type: "String",optional:!0,field: "city",description: "<p>id of city</p>"
+                                                                        },
+                                                                        {group: "Parameter",type: "String",optional:!0,field: "location",description: "<p>id of city</p>"
+                                                                        },
+                                                                        {group: "Parameter",type: "String",optional:!0,field: "location.latitude",description: "<p>latitude</p>"
+                                                                        },
+                                                                        {group: "Parameter",type: "String",optional:!0,field: "location.longitude",description: "<p>longitude</p>"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },success: {fields: {
+                                                                    "Success 200": [
+                                                                        {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                                        },
+                                                                        {group: "Success 200",type: "String",optional:!1,field: "message",description: ""
+                                                                        }
+                                                                    ]
+                                                                },examples: [
+                                                                    {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                                            "success": true,
+                                                                            "message": "Verification Email Sent"`,type: "json"
+                                                                        }
+                                                                    ]
+                                                                },error: {fields: {
+                                                                        "Error 4xx": [
+                                                                            {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                                            },
+                                                                            {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                                            }
+                                                                        ]
+                                                                    },examples: [
+                                                                        {title: "Error-Response:",content:`   HTTP/1.1 500 InternalError
+{
+                                                                                "success": false,
+                                                                                "error": "Server Error"
+                                                                            }`,type: "json"
+                                                                        },
+                                                                        {title: "Error-Response:",content:`   HTTP/1.1 400 Bad Request
+{
+                                                                                "success": false,
+                                                                                "error": "Email Already Exists"
+                                                                            }`,type: "json"
+                                                                        }
+                                                                    ]
+                                                                },version: "0.0.0",filename: "user.js",groupTitle: "Users",name: "PostApiV1UsersRegister"
+                                                            },
+                                                            {type: "post",url: "/api/v1/users/resetpassword/:id/:emailVerificationId",title: "reset Password by Email",permission: [
+                                                                    {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+                                                                    }
+                                                                ],group: "Users",description: "<p>reset Password</p>",parameter: {fields: {Parameter: [
+                                                                            {group: "Parameter",type: "String",optional:!1,field: "id",description: "<p>user id</p>"
+                                                                            },
+                                                                            {group: "Parameter",type: "String",optional:!1,field: "emailVerificationId",description: ""
+                                                                            },
+                                                                            {group: "Parameter",type: "String",optional:!1,field: "password",description: ""
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                },success: {fields: {
+                                                                        "Success 200": [
+                                                                            {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                                            },
+                                                                            {group: "Success 200",type: "message",optional:!1,field: "message",description: ""
+                                                                            }
+                                                                        ]
+                                                                    },examples: [
+                                                                        {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                                                "success": true,
+                                                                                "message": "Password SuccessFully Reset"`,type: "json"
+                                                                            }
+                                                                        ]
+                                                                    },error: {fields: {
+                                                                            "Error 4xx": [
+                                                                                {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                                                },
+                                                                                {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                                                }
+                                                                            ]
+                                                                        },examples: [
+                                                                            {title: "Error-Response:",content:`   HTTP/1.1 404 Error
+{
+                                                                                    "success": false,
+                                                                                    "error": "Invalid ObjectId"
+                                                                                }`,type: "json"
+                                                                            },
+                                                                            {title: "Error-Response:",content:`   HTTP/1.1 500 Error
+{
+                                                                                    "success": false,
+                                                                                    "error": "Error in Reset Password"
+                                                                                }`,type: "json"
+                                                                            }
+                                                                        ]
+                                                                    },version: "0.0.0",filename: "user.js",groupTitle: "Users",name: "PostApiV1UsersResetpasswordIdEmailverificationid"
+                                                                },
+                                                                {type: "put",url: "/api/v1/users/changepassword",title: "Change Password",permission: [
+                                                                        {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+                                                                        }
+                                                                    ],group: "Users",description: "<p>update Password</p> <p>note only the <code>owner</code> can update Password</p>",header: {fields: {Header: [
+                                                                                {group: "Header",type: "String",optional:!1,field: "authorization",description: "<p>Users unique token <code>&quot;Bearer XXXXXXXXXXXXX&quot;</code>.</p>"
+                                                                                }
+                                                                            ]
+                                                                        },examples: [
+                                                                            {title: "Header-Example:",content:`{
+                                                                                    "authorization": "Bearer eyJhbGciOiJIUzI1..."
+                                                                                }`,type: "json"
+                                                                            }
+                                                                        ]
+                                                                    },parameter: {fields: {Parameter: [
+                                                                                {group: "Parameter",type: "String",optional:!1,field: "oldPassword",description: ""
+                                                                                },
+                                                                                {group: "Parameter",type: "String",optional:!1,field: "newPassword",description: ""
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    },success: {fields: {
+                                                                            "Success 200": [
+                                                                                {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                                                },
+                                                                                {group: "Success 200",type: "message",optional:!1,field: "message",description: ""
+                                                                                }
+                                                                            ]
+                                                                        },examples: [
+                                                                            {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                                                    "success": true,
+                                                                                    "message": "Password SuccessFully Updated"`,type: "json"
+                                                                                }
+                                                                            ]
+                                                                        },error: {fields: {
+                                                                                "Error 4xx": [
+                                                                                    {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                                                    },
+                                                                                    {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                                                    }
+                                                                                ]
+                                                                            },examples: [
+                                                                                {title: "Error-Response:",content:`   HTTP/1.1 404 Error
+{
+                                                                                        "success": false,
+                                                                                        "error": "Error in Update User Data.Bad Params"
+                                                                                    }`,type: "json"
+                                                                                },
+                                                                                {title: "Error-Response:",content:`   HTTP/1.1 400 Error
+{
+                                                                                        "success": false,
+                                                                                        "error": "Invalid Password"
+                                                                                    }`,type: "json"
+                                                                                }
+                                                                            ]
+                                                                        },version: "0.0.0",filename: "user.js",groupTitle: "Users",name: "PutApiV1UsersChangepassword"
+                                                                    },
+                                                                    {type: "put",url: "/api/v1/users/updatefirebasetoken/",title: "update firebasetoken",permission: [
+                                                                            {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+                                                                            }
+                                                                        ],group: "Users",description: "<p>update firebasetoken</p> <p>note only the <code>owner</code> of profile can update</p>",header: {fields: {Header: [
+                                                                                    {group: "Header",type: "String",optional:!1,field: "authorization",description: "<p>Users unique token <code>&quot;Bearer XXXXXXXXXXXXX&quot;</code>.</p>"
+                                                                                    }
+                                                                                ]
+                                                                            },examples: [
+                                                                                {title: "Header-Example:",content:`{
+                                                                                        "authorization": "Bearer eyJhbGciOiJIUzI1..."
+                                                                                    }`,type: "json"
+                                                                                }
+                                                                            ]
+                                                                        },parameter: {fields: {Parameter: [
+                                                                                    {group: "Parameter",type: "String",optional:!1,field: "fireBaseToken",description: "<p>fireBaseToken</p>"
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        },success: {fields: {
+                                                                                "Success 200": [
+                                                                                    {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                                                    },
+                                                                                    {group: "Success 200",type: "Object",optional:!1,field: "user",description: "<p>Return user information.</p>"
+                                                                                    }
+                                                                                ]
+                                                                            },examples: [
+                                                                                {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                                                        "success": true,
+                                                                                        "profile": {...
+                                                                                        }`,type: "json"
+                                                                                    }
+                                                                                ]
+                                                                            },error: {fields: {
+                                                                                    "Error 4xx": [
+                                                                                        {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                                                        },
+                                                                                        {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                                                        }
+                                                                                    ]
+                                                                                },examples: [
+                                                                                    {title: "Error-Response:",content:`   HTTP/1.1 500 InternalError
+{
+                                                                                            "success": false,
+                                                                                            "error": "Error in Update User Data"
+                                                                                        }`,type: "json"
+                                                                                    }
+                                                                                ]
+                                                                            },version: "0.0.0",filename: "user.js",groupTitle: "Users",name: "PutApiV1UsersUpdatefirebasetoken"
+                                                                        },
+                                                                        {type: "put",url: "/api/v1/users/updatemyprofile/",title: "update my profile",permission: [
+                                                                                {name: "token",title: "Users with token access only",description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+                                                                                }
+                                                                            ],group: "Users",description: "<p>update my profile</p> <p>note only the <code>owner</code> of profile can update</p>",header: {fields: {Header: [
+                                                                                        {group: "Header",type: "String",optional:!1,field: "authorization",description: "<p>Users unique token <code>&quot;Bearer XXXXXXXXXXXXX&quot;</code>.</p>"
+                                                                                        }
+                                                                                    ]
+                                                                                },examples: [
+                                                                                    {title: "Header-Example:",content:`{
+                                                                                            "authorization": "Bearer eyJhbGciOiJIUzI1..."
+                                                                                        }`,type: "json"
+                                                                                    }
+                                                                                ]
+                                                                            },parameter: {fields: {Parameter: [
+                                                                                        {group: "Parameter",type: "String",optional:!0,field: "firstName",description: "<p>first name of user</p>"
+                                                                                        },
+                                                                                        {group: "Parameter",type: "String",optional:!0,field: "lastName",description: "<p>last name of user</p>"
+                                                                                        },
+                                                                                        {group: "Parameter",type: "String",optional:!0,field: "profileImage",description: "<p>profileImage of user</p>"
+                                                                                        },
+                                                                                        {group: "Parameter",type: "String",optional:!0,field: "avatar",description: "<p>avatar of user</p>"
+                                                                                        },
+                                                                                        {group: "Parameter",type: "String",optional:!0,field: "state",description: "<p>id of state (Province)</p>"
+                                                                                        },
+                                                                                        {group: "Parameter",type: "String",optional:!0,field: "city",description: "<p>id of city</p>"
+                                                                                        },
+                                                                                        {group: "Parameter",type: "String",optional:!0,field: "address",description: "<p>address of user</p>"
+                                                                                        },
+                                                                                        {group: "Parameter",type: "String",optional:!0,field: "postalCode",description: "<p>postalCode of user</p>"
+                                                                                        },
+                                                                                        {group: "Parameter",type: "String",optional:!0,field: "location",description: "<p>location Array <code>[lat,lng]</code></p>"
+                                                                                        },
+                                                                                        {group: "Parameter",type: "String",optional:!0,field: "about",description: "<p>about of user</p>"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },success: {fields: {
+                                                                                    "Success 200": [
+                                                                                        {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                                                        },
+                                                                                        {group: "Success 200",type: "Object",optional:!1,field: "user",description: "<p>Return user information.</p>"
+                                                                                        }
+                                                                                    ]
+                                                                                },examples: [
+                                                                                    {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                                                            "success": true,
+                                                                                            "profile": {...
+                                                                                            }`,type: "json"
+                                                                                        }
+                                                                                    ]
+                                                                                },error: {fields: {
+                                                                                        "Error 4xx": [
+                                                                                            {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                                                            },
+                                                                                            {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                                                            }
+                                                                                        ]
+                                                                                    },examples: [
+                                                                                        {title: "Error-Response:",content:`   HTTP/1.1 500 InternalError
+{
+                                                                                                "success": false,
+                                                                                                "error": "Error in Update Data"
+                                                                                            }`,type: "json"
+                                                                                        }
+                                                                                    ]
+                                                                                },version: "0.0.0",filename: "user.js",groupTitle: "Users",name: "PutApiV1UsersUpdatemyprofile"
+                                                                            },
+                                                                            {type: "get",url: "/api/v1/utils/cities/:id",title: "get Cities",group: "Utilities",description: "<p>get list of City base on State id</p>",parameter: {fields: {Parameter: [
+                                                                                            {group: "Parameter",type: "String",optional:!1,field: "id",description: "<p>id of State</p>"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },success: {fields: {
+                                                                                        "Success 200": [
+                                                                                            {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                                                            },
+                                                                                            {group: "Success 200",type: "json",optional:!1,field: "cities",description: "<p>List of Cities.</p>"
+                                                                                            }
+                                                                                        ]
+                                                                                    },examples: [
+                                                                                        {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                                                                "success": true,
+                                                                                                "Cities": [
+                                                                                                    {
+                                                                                                        "_id": "6032c3384db2cb27c45c6457",
+                                                                                                        "name": "\u0622\u0628\u0627\u062F\u0627\u0646"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "_id": "6032c3384db2cb27c45c6458",
+                                                                                                        "name": "\u0622\u063A\u0627\u062C\u0627\u0631\u06CC"
+                                                                                                    },
+  ...
+                                                                                                ]
+                                                                                            }`,type: "json"
+                                                                                        }
+                                                                                    ]
+                                                                                },error: {examples: [
+                                                                                        {title: "Error-Response:",content:`   HTTP/1.1 404 Not Found
+{
+                                                                                                "success": false,
+                                                                                                "error": "\u062E\u0637\u0627 ObjectId"
+                                                                                            }`,type: "json"
+                                                                                        }
+                                                                                    ]
+                                                                                },version: "0.0.0",filename: "utils.js",groupTitle: "Utilities",name: "GetApiV1UtilsCitiesId"
+                                                                            },
+                                                                            {type: "get",url: "/api/v1/utils/states",title: "get States",group: "Utilities",description: "<p>list of state in iran</p>",error: {fields: {
+                                                                                        "Error 4xx": [
+                                                                                            {group: "Error 4xx",type: "Boolean",optional:!1,field: "success",description: "<p>false.</p>"
+                                                                                            },
+                                                                                            {group: "Error 4xx",type: "String",optional:!1,field: "error",description: "<p>message</p>"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },success: {fields: {
+                                                                                        "Success 200": [
+                                                                                            {group: "Success 200",type: "Boolean",optional:!1,field: "success",description: "<p>true.</p>"
+                                                                                            },
+                                                                                            {group: "Success 200",type: "json",optional:!1,field: "states",description: "<p>List of States.</p>"
+                                                                                            }
+                                                                                        ]
+                                                                                    },examples: [
+                                                                                        {title: "Success",content:`HTTP/1.1 200 ok
+{
+                                                                                                "success": true,
+                                                                                                "states": [
+                                                                                                    {
+                                                                                                        "_id": "6032c2a65c696c1f38d1bb7c",
+                                                                                                        "name": "\u0622\u0630\u0631\u0628\u0627\u06CC\u062C\u0627\u0646 \u0634\u0631\u0642\u06CC"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "_id": "6032c2a65c696c1f38d1bb86",
+                                                                                                        "name": "\u062E\u0631\u0627\u0633\u0627\u0646 \u0634\u0645\u0627\u0644\u06CC"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "_id": "6032c2a65c696c1f38d1bb87",
+                                                                                                        "name": "\u062E\u0648\u0632\u0633\u062A\u0627\u0646"
+                                                                                                    },
+  ...
+                                                                                                ]
+                                                                                            }`,type: "json"
+                                                                                        }
+                                                                                    ]
+                                                                                },version: "0.0.0",filename: "utils.js",groupTitle: "Utilities",name: "GetApiV1UtilsStates"
+                                                                            }
+                                                                        ]

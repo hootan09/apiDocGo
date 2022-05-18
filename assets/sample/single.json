@@ -1,0 +1,132 @@
+{
+    type: "get",
+    url: "/api/v1/admins/user/:id",
+    title: "get user profile by admin",
+    permission: [
+        {
+            name: "token",
+            title: "Users with token access only",
+            description: "<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
+        }
+    ],
+    group: "Admins",
+    description: "<p>get user profile by admin token</p> <p>only the <code>admin with token</code> can get it</p>",
+    header: {
+        fields: {
+            Header: [
+                {
+                    group: "Header",
+                    type: "String",
+                    optional:!1,
+                    field: "authorization",
+                    description: "<p>Users unique token <code>&quot;Bearer XXXXXXXXXXXXX&quot;</code>.</p>"
+                }
+            ]
+        },examples: [
+            {
+                title: "Header-Example:"
+                ,content:`{
+                    "authorization": "Bearer eyJhbGciOiJIUzI1..."
+                }`,
+                type: "json"
+            }
+        ]
+    },
+    parameter: {
+        fields: {
+            Parameter: [
+                {
+                    group: "Parameter",
+                    type: "String",
+                    optional:!1,
+                    field: "id",
+                    description: "<p>id of user (userId)</p>"
+                }
+            ]
+        }
+    },
+    success: {
+        fields: {
+            "Success 200": [
+                {g
+                    roup: "Success 200",
+                    type: "Boolean",
+                    optional:!1,
+                    field: "success",
+                    description: "<p>true.</p>"
+                },
+                {
+                    group: "Success 200",
+                    type: "Object",
+                    optional:!1,
+                    field: "user",
+                    description: "<p>Return user information.</p>"
+                }
+            ]
+        },
+        examples: [
+            {
+                title: "Success",
+                content:`HTTP/1.1 200 ok
+{
+                    "success": true,
+                    "user": {...
+                    }`,
+                    type: "json"
+                }
+            ]
+        },
+        error: {
+            fields: {
+                "Error 4xx": [
+                    {
+                        group: "Error 4xx",
+                        type: "Boolean",
+                        optional:!1,
+                        field: "success",
+                        description: "<p>false.</p>"
+                    },
+                    {
+                        group: "Error 4xx",
+                        type: "String",
+                        optional:!1,
+                        field: "error",
+                        description: "<p>message</p>"
+                    }
+                ]
+            },
+            examples: [
+                {
+                    title: "Error-Response:",
+                    content:`   HTTP/1.1 401 unautorized
+{
+                        "success": false,
+                        "error": "Unautorized"
+                    }`,
+                    type: "json"
+                },
+                {
+                    title: "Error-Response:",
+                    content:`   HTTP/1.1 404 notFound
+{
+                        "success": false,
+                        "error": "Invalid ObjectId"
+                    }`,
+                    type: "json"
+                },
+                {
+                    title: "Error-Response:",
+                    content:`   HTTP/1.1 400 NotFound
+{
+                        "success": false,
+                        "error": "User Not Found"
+                    }`,
+                    type: "json"
+                }
+            ]
+        },
+        version: "0.0.0",
+        filename: "admin.js",
+        groupTitle: "Admins",
+        name: "GetApiV1AdminsUserId"
+    }
