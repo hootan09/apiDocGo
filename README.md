@@ -24,6 +24,7 @@ Todo:
 - [X] parse @apiSampleRequest
 - [X] parse @apiSuccessExample
 - [X] parse @apiSuccess
+- [X] parse @apiVersion
 - [ ] READER Functionality
 - [ ] Writer Functionality
 - [ ] ApiDOcGo yml config file

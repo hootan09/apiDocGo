@@ -103,8 +103,8 @@ func ParseDocArray(docArray [][]string) {
 				result := Api_sampleRequest(strings.Join(splitEachCommentBySpace[1:], " "))
 				ParsedDoc["apisamplerequest"] = result
 			case "apiversion":
-				// ToDo
-				// @apiVersion must build
+				result := Api_version(strings.Join(splitEachCommentBySpace[1:], " "))
+				ParsedDoc["apiversion"] = result
 			default:
 				log.Printf("@%s 'No Case match to parse'\n", splitEachCommentBySpace[0])
 			}
