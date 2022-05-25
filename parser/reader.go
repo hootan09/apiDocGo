@@ -34,7 +34,7 @@ func ReadPath(codesPath string) {
 	}
 }
 
-// checking comments
+// using go token parser for finding comments
 func trimComments(path string) [][]string {
 
 	var trimmedComments [][]string
@@ -71,7 +71,4 @@ func trimComments(path string) [][]string {
 
 	}
 	return trimmedComments
-
 }
-
-// using go token parser for finding comments
