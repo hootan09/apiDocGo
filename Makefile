@@ -1,6 +1,10 @@
 doc:
 	godoc -http=:8080
+test:
+	go test -v
 build:
 	go build .
+run:
+	go run .
 
-.PHONY: doc build
+.PHONY: doc test build run
