@@ -1,5 +1,6 @@
+# sudo apt install golang-golang-x-tools
 doc:
-	godoc -http=:8080
+	godoc -http=:8080 
 test:
 	go test -v
 build:
