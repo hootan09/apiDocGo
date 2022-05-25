@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	parser.ReadPath("./example")
+	parser.ReadPath("./examples")
 
 	//TODO
 	// usage "apidocgo -i routes/ -o public/apidoc"

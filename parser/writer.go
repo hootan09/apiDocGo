@@ -1,10 +1,10 @@
 package parser
 
 // if JSON config file not exist must using this
-var defaultConfig = map[string]string{
+var DefaultConfig = map[string]string{
 	"name":        "Acme project",
 	"version":     "0.0.0",
-	"description": "REST Api",
+	"description": "REST Api Doc",
 }
 
 //TODO
