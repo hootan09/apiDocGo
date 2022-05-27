@@ -10,8 +10,11 @@ import (
 	"strings"
 )
 
-// Reading definded path directory for finding go file
-func ReadPath(codesPath string) {
+var DocumentsArray [][]string
+var Result []interface{}
+
+// Reading definded path directory for finding go files & Documents
+func ReadDoc(codesPath string) []interface{} {
 	err := filepath.Walk(codesPath, func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
 			fmt.Printf("prevent panic by handling failure accessing a path %q: %v\n", path, err)
@@ -22,20 +25,24 @@ func ReadPath(codesPath string) {
 			return nil
 		}
 
-		// fmt.Println(info.Name())
-		commentsArray := trimComments(path)
-		fmt.Println(commentsArray)
+		// get documents as array
+		commentsArray := GetTrimedComments(path)
+		DocumentsArray = append(DocumentsArray, commentsArray...)
 
 		return nil
 	})
 	if err != nil {
 		fmt.Printf("error walking the path %q: %v\n", codesPath, err)
-		return
+		return nil
 	}
+
+	// parsing Document array by parser
+	ParseDocArray(DocumentsArray)
+	return Result
 }
 
 // using go token parser for finding comments
-func trimComments(path string) [][]string {
+func GetTrimedComments(path string) [][]string {
 
 	var trimmedComments [][]string
 
@@ -71,4 +78,37 @@ func trimComments(path string) [][]string {
 
 	}
 	return trimmedComments
+}
+
+func ParseDocArray(docArray [][]string) {
+	for _, eachDoc := range docArray {
+		var ParsedDoc = make(map[string]interface{})
+		for _, line := range eachDoc {
+			splitEachCommentBySpace := strings.Split(line, " ")
+
+			switch strings.ToLower(splitEachCommentBySpace[0]) {
+			case "api":
+				result := Api(strings.Join(splitEachCommentBySpace[1:], " "))
+				ParsedDoc["api"] = *result
+			case "apiname":
+				result := Api_name(strings.Join(splitEachCommentBySpace[1:], " "))
+				ParsedDoc["apiname"] = *result
+			case "apigroup":
+				result := Api_group(strings.Join(splitEachCommentBySpace[1:], " "))
+				ParsedDoc["apigroup"] = *result
+			case "apidescription":
+				result := Api_group(strings.Join(splitEachCommentBySpace[1:], " "))
+				ParsedDoc["apidescription"] = *result
+			case "apisamplerequest":
+				result := Api_sampleRequest(strings.Join(splitEachCommentBySpace[1:], " "))
+				ParsedDoc["apisamplerequest"] = result
+			case "apiversion":
+				// ToDo
+				// @apiVersion must build
+			default:
+				log.Printf("@%s 'No Case match to parse'\n", splitEachCommentBySpace[0])
+			}
+		}
+		Result = append(Result, ParsedDoc)
+	}
 }
