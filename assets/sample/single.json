@@ -24,8 +24,7 @@
             ]
         },examples: [
             {
-                title: "Header-Example:"
-                ,content:`{
+                title: "Header-Example:",content:`{
                     "authorization": "Bearer eyJhbGciOiJIUzI1..."
                 }`,
                 type: "json"

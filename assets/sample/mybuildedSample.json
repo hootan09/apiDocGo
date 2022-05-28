@@ -1,0 +1,354 @@
+[
+    {
+        "apidefine": {
+            "name": "admin:computer",
+            "title": "User access only",
+            "description": "This optional description belong to to the group admin."
+        }
+    },
+    {
+        "api": {
+            "type": "get",
+            "url": "/user/:region/:id/:opt Read data of a User",
+            "title": " "
+        },
+        "apidescription": {
+            "title": "Compare_version_0.3.0_with_0.2.0_and_you_will_see_the_green_markers_with_new_items_in_version_0.3.0_and_red_markers_with_removed_items_since_0.2.0."
+        },
+        "apierror": {
+            "group": "Error 4xx",
+            "type": "",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "InternalServerError",
+            "defaultVale": "",
+            "description": "The server encountered an internal error"
+        },
+        "apierrorexample": {
+            "title": "Response (example):",
+            "type": "",
+            "content": "HTTP/1.1 401 Not Authenticated\n\n      {\n\n        \"error\": \"NoAccessRight\"\n\n      }"
+        },
+        "apiexample": {
+            "title": "Python example",
+            "type": "python",
+            "content": "client = AcmeCorpApi.Client(token=\"5f048fe\")\n\n  user = client.get_user(42)"
+        },
+        "apigroup": {
+            "title": "User"
+        },
+        "apiheader": {
+            "group": "Header",
+            "type": "String",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "X-Apidoc-Cool-Factor",
+            "defaultVale": "big",
+            "description": "Some other header with a default value."
+        },
+        "apiheaderexample": {
+            "title": "Header-Example",
+            "type": "Header",
+            "content": "\"Authorization: token 5f048fe\""
+        },
+        "apiname": {
+            "title": "GetUser"
+        },
+        "apiparam": {
+            "group": "Parameter",
+            "type": "String",
+            "size": "",
+            "allowedValues": null,
+            "optional": true,
+            "field": "opt",
+            "defaultVale": "",
+            "description": "An optional param"
+        },
+        "apipermission": "admin:computer",
+        "apisuccess": {
+            "group": "Success 200",
+            "type": "String",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "options.value",
+            "defaultVale": "",
+            "description": "Option Value."
+        },
+        "apiversion": "0.3.0"
+    },
+    {
+        "api": {
+            "type": "post",
+            "url": "/user Create a new User",
+            "title": " "
+        },
+        "apibody": {
+            "group": "Body",
+            "type": "Number",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "extraInfo.secrets.hair",
+            "defaultVale": "1000",
+            "description": "Number of hair of user"
+        },
+        "apidescription": {
+            "title": "In_this_case_\"apiErrorStructure\"_is_defined_and_used._Define_blocks_with_params_that_will_be_used_in_several_funcs,_so_you_dont_have_to_rewrite_them."
+        },
+        "apigroup": {
+            "title": "User"
+        },
+        "apiname": {
+            "title": "PostUser"
+        },
+        "apipermission": "none",
+        "apisuccess": {
+            "group": "Success 200",
+            "type": "Number",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "id",
+            "defaultVale": "",
+            "description": "The new Users-ID."
+        },
+        "apiuse": "CreateUserError",
+        "apiversion": "0.3.0"
+    },
+    {
+        "api": {
+            "type": "put",
+            "url": "/user/:id Change a User",
+            "title": " "
+        },
+        "apibody": {
+            "group": "Body",
+            "type": "File",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "avatar",
+            "defaultVale": "",
+            "description": "Upload avatar."
+        },
+        "apidescription": {
+            "title": "This_func_has_same_errors_like_POST_/user,_but_errors_not_defined_again,_they_were_included_with_\"apiErrorStructure\""
+        },
+        "apigroup": {
+            "title": "User"
+        },
+        "apiname": {
+            "title": "PutUser"
+        },
+        "apiparam": {
+            "group": "Parameter",
+            "type": "Number",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "id",
+            "defaultVale": "",
+            "description": "\u003ccode\u003eid\u003c/code\u003e of the user."
+        },
+        "apipermission": "none",
+        "apiuse": "CreateUserError",
+        "apiversion": "0.3.0"
+    },
+    {
+        "api": {
+            "type": "delete",
+            "url": "/user/:id Delete user",
+            "title": " "
+        },
+        "apidescription": {
+            "title": "Be_careful!_This_will_remove_all_the_data_associated_with_that_user!"
+        },
+        "apierror": {
+            "group": "Error 4xx",
+            "type": "",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "InternalServerError",
+            "defaultVale": "",
+            "description": "The server encountered an internal error."
+        },
+        "apierrorexample": {
+            "title": "Response (example):",
+            "type": "",
+            "content": "HTTP/1.1 401 Not Authenticated\n\n      {\n\n        \"error\": \"NoAccessRight\"\n\n      }"
+        },
+        "apiexample": {
+            "title": "Python example",
+            "type": "python",
+            "content": "client = AcmeCorpApi.Client(token=\"5f048fe\")\n\n  user = client.delete_user(42)"
+        },
+        "apigroup": {
+            "title": "User"
+        },
+        "apiheader": {
+            "group": "Header",
+            "type": "String",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "Authorization",
+            "defaultVale": "",
+            "description": "The token can be generated from your user profile."
+        },
+        "apiheaderexample": {
+            "title": "Header-Example",
+            "type": "Header",
+            "content": "\"Authorization: token 5f048fe\""
+        },
+        "apiname": {
+            "title": "DeleteUser"
+        },
+        "apiparam": {
+            "group": "Parameter",
+            "type": "Number",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "id",
+            "defaultVale": "",
+            "description": "\u003ccode\u003eid\u003c/code\u003e of the user."
+        },
+        "apipermission": "admin",
+        "apisuccess": {
+            "group": "Success 200",
+            "type": "String",
+            "size": "",
+            "allowedValues": null,
+            "optional": true,
+            "field": "nullableField",
+            "defaultVale": "",
+            "description": "This response field is not always there (can be null)."
+        },
+        "apisuccessexample": {
+            "title": "Success-Example",
+            "type": "json",
+            "content": "HTTP/1.1 200 OK\n\n      {\n\n          \"result\": \"ok\"\n\n      }"
+        },
+        "apiversion": "0.3.0"
+    },
+    {
+        "api": {
+            "type": "post",
+            "url": "/user/:id Thank a user: this is quite a long name indeed",
+            "title": " "
+        },
+        "apidescription": {
+            "title": "This_is_here_to_have_a_long_name_in_the_left_menu."
+        },
+        "apigroup": {
+            "title": "User"
+        },
+        "apiname": {
+            "title": "ThankUser"
+        },
+        "apisamplerequest": "off",
+        "apiversion": "0.3.0"
+    },
+    {
+        "api": {
+            "type": "post",
+            "url": "/city Create a new city",
+            "title": " "
+        },
+        "apibody": {
+            "group": "Body",
+            "type": "String",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "name",
+            "defaultVale": "Paris",
+            "description": "Name of the city"
+        },
+        "apidescription": {
+            "title": "Create_a_new_city."
+        },
+        "apigroup": {
+            "title": "City"
+        },
+        "apiname": {
+            "title": "CreateCity"
+        },
+        "apiquery": {
+            "group": "Query",
+            "type": "Number",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "zoom",
+            "defaultVale": "",
+            "description": "Zoom."
+        },
+        "apiversion": "0.3.0"
+    },
+    {
+        "api": {
+            "type": "get",
+            "url": "/category Get a category",
+            "title": " "
+        },
+        "apidescription": {
+            "title": "Get_a_category._Sample_request_on_example.com_here."
+        },
+        "apigroup": {
+            "title": "Category_(official)"
+        },
+        "apiname": {
+            "title": "GetCategory"
+        },
+        "apiquery": {
+            "group": "Query",
+            "type": "Number",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "id",
+            "defaultVale": "",
+            "description": "Category ID."
+        },
+        "apisamplerequest": "http://www.example.com",
+        "apiversion": "0.3.0"
+    },
+    {
+        "api": {
+            "type": "delete",
+            "url": "/category Delete a category",
+            "title": " "
+        },
+        "apidescription": {
+            "title": "Delete_a_category._Sample_request_has_been_disabled_here."
+        },
+        "apigroup": {
+            "title": "Category_(official)"
+        },
+        "apiname": {
+            "title": "DeleteCategory"
+        },
+        "apiparamexample": {
+            "title": "Some json code:",
+            "type": "json",
+            "content": "{\n\n      \"user\": \"Sample User\",\n\n       \"payload\": {\n\n         \"test\": [\n\n           \"code\": \"\n\n             public class HelloWorldTest {\n\n               HelloWorld hw = new HelloWorld();\n\n               @Test\n\n               public void testOkay {\n\n               assertEquals(\\\"HelloWorld\\\", hw.getMsg());\n\n             }\n\n          }\"\n\n         ]\n\n       }\n\n    }"
+        },
+        "apiquery": {
+            "group": "Query",
+            "type": "Number",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "id",
+            "defaultVale": "",
+            "description": "Category ID."
+        },
+        "apisamplerequest": "off",
+        "apiversion": "0.3.0"
+    }
+]
