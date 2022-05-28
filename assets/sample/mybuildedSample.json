@@ -9,8 +9,8 @@
     {
         "api": {
             "type": "get",
-            "url": "/user/:region/:id/:opt Read data of a User",
-            "title": " "
+            "url": "/user/:region/:id/:opt",
+            "title": "Read data of a User"
         },
         "apidescription": {
             "title": "Compare_version_0.3.0_with_0.2.0_and_you_will_see_the_green_markers_with_new_items_in_version_0.3.0_and_red_markers_with_removed_items_since_0.2.0."
@@ -82,8 +82,8 @@
     {
         "api": {
             "type": "post",
-            "url": "/user Create a new User",
-            "title": " "
+            "url": "/user",
+            "title": "Create a new User"
         },
         "apibody": {
             "group": "Body",
@@ -121,8 +121,8 @@
     {
         "api": {
             "type": "put",
-            "url": "/user/:id Change a User",
-            "title": " "
+            "url": "/user/:id",
+            "title": "Change a User"
         },
         "apibody": {
             "group": "Body",
@@ -160,8 +160,8 @@
     {
         "api": {
             "type": "delete",
-            "url": "/user/:id Delete user",
-            "title": " "
+            "url": "/user/:id",
+            "title": "Delete user"
         },
         "apidescription": {
             "title": "Be_careful!_This_will_remove_all_the_data_associated_with_that_user!"
@@ -238,8 +238,8 @@
     {
         "api": {
             "type": "post",
-            "url": "/user/:id Thank a user: this is quite a long name indeed",
-            "title": " "
+            "url": "/user/:id",
+            "title": "Thank a user: this is quite a long name indeed"
         },
         "apidescription": {
             "title": "This_is_here_to_have_a_long_name_in_the_left_menu."
@@ -256,8 +256,8 @@
     {
         "api": {
             "type": "post",
-            "url": "/city Create a new city",
-            "title": " "
+            "url": "/city",
+            "title": "Create a new city"
         },
         "apibody": {
             "group": "Body",
@@ -293,8 +293,8 @@
     {
         "api": {
             "type": "get",
-            "url": "/category Get a category",
-            "title": " "
+            "url": "/category",
+            "title": "Get a category"
         },
         "apidescription": {
             "title": "Get_a_category._Sample_request_on_example.com_here."
@@ -321,8 +321,8 @@
     {
         "api": {
             "type": "delete",
-            "url": "/category Delete a category",
-            "title": " "
+            "url": "/category",
+            "title": "Delete a category"
         },
         "apidescription": {
             "title": "Delete_a_category._Sample_request_has_been_disabled_here."

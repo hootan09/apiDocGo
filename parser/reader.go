@@ -87,7 +87,6 @@ func ParseDocArray(docArray [][]string) {
 			splitEachCommentBySpace := strings.SplitN(line, " ", 2)
 			switch strings.ToLower(splitEachCommentBySpace[0]) {
 			case "":
-				fmt.Println(splitEachCommentBySpace[1])
 				result := Api(splitEachCommentBySpace[1])
 				ParsedDoc["api"] = *result
 			case "name":

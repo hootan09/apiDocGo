@@ -4,6 +4,7 @@ package parser
 import (
 	"fmt"
 	"regexp"
+	"strings"
 )
 
 type ApiStruct struct {
@@ -14,6 +15,7 @@ type ApiStruct struct {
 
 // Parse @api Content
 func Api(content string, log ...bool) *ApiStruct {
+	content = strings.TrimSpace(content)
 	if len(log) > 0 {
 		fmt.Println("Parse @api with Content: ", content)
 	}
