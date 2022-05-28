@@ -17,7 +17,6 @@ func Api(content string, log ...bool) *ApiStruct {
 	if len(log) > 0 {
 		fmt.Println("Parse @api with Content: ", content)
 	}
-
 	api := new(ApiStruct)
 
 	r := regexp.MustCompile(`^(?:(?:\{(.+?)\})?\s*)?(.+?)(?:\s+(.+?))?$`)
