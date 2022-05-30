@@ -2,12 +2,15 @@ package main
 
 import (
 	"ApiDocGo/parser"
-	"fmt"
+)
+
+const (
+	ApiDocGoVersion = "0.0.1"
 )
 
 func main() {
-	Documents := parser.ReadDoc("./examples")
-	fmt.Printf("%+v \n", Documents)
+	//TODO
+	// usage "apidocgo -i routes/ -o public/apidoc"
 
 	// json_data, err := json.Marshal(Documents)
 	// if err != nil {
@@ -15,7 +18,7 @@ func main() {
 	// }
 	// fmt.Println(string(json_data))
 
-	//TODO
-	// usage "apidocgo -i routes/ -o public/apidoc"
+	Documents := parser.ReadDoc("./examples")
+	parser.WriteDoc(Documents, ApiDocGoVersion)
 
 }
