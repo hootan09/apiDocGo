@@ -27,8 +27,8 @@
     <span class="search-reset">x</span>
   </div>
   <ul class="sidenav nav nav-list list">
-    
 
+    
     <li class="nav-header nav-list-item" data-group="Admins"><a href="#api-Admins" data-group="show-api-Admins"
         class="show-group api-Admins-init">Admins</a></li>
 
@@ -38,8 +38,8 @@
         class="nav-list-item show-api api-Admins-GetApiV1AdminsUserId-init">get user profile by admin<div
           class="nav-list-url-item hide">/api/v1/admins/user/:id</div></a>
     </li>
-
     
+
   </ul>
 </nav>
 
@@ -48,8 +48,8 @@
         <div id="project">
           
 <div class="pull-left">
-  <h1>FullStack API</h1>
-  <h2>apiDoc for FullStack API</h2>
+  <h1>Acme project</h1>
+  <h2>REST Api Doc</h2>
 </div>
 <div class="pull-right">
   <div class="btn-group">
@@ -78,8 +78,7 @@
 
     <article id="api-Admins-GetApiV1AdminsUserId-0.0.0" data-group="Admins" data-name="GetApiV1AdminsUserId" data-version="0.0.0" class="">
       <div class="pull-left">
-        <h1><span class="color-primary">Admins</span> <span class="text-muted">|</span> get user profile by
-          admin</h1>
+        <h1><span class="color-primary">Admins</span> <span class="text-muted">|</span> get user profile by admin</h1>
       </div>
       <div class="pull-right">
         <div class="btn-group">
@@ -94,20 +93,21 @@
       </div>
       <div class="clearfix"></div>
 
-
-
-
       <p></p>
       <p>get user profile by admin token</p>
       <p>only the <code>admin with token</code> can get it</p>
       <p></p>
       <span class="method meth-get">get</span>
-      <pre data-type="get" class=" language-http"
-        tabindex="0"><code class=" language-http"><span class="token header-name keyword">https:</span>//xxxx.heroku.com/api/v1/admins/user/:id</code></pre>
+      <pre data-type="get" class=" language-http" tabindex="0">
+        <code class=" language-http">
+          <span class="token header-name keyword">
+            https:
+          </span>//xxxx.heroku.com/api/v1/admins/user/:id
+        </code>
+      </pre>
 
       <p>
-        Permission:
-        token
+        Permission:token
         <button type="button" class="btn btn-info btn-xs" data-title="Users with token access only"
           data-content="<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
           data-html="true" data-toggle="popover" data-placement="right" data-trigger="hover"
@@ -115,8 +115,6 @@
           <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
         </button>
       </p>
-
-
 
       <h2>Header</h2>
       <table>
@@ -136,27 +134,29 @@
             </td>
             <td>
               <p>Users unique token <code>"Bearer XXXXXXXXXXXXX"</code>.</p>
-
-
             </td>
           </tr>
         </tbody>
       </table>
       <ul class="nav nav-tabs nav-tabs-examples" role="tablist">
         <li class="active">
-          <a href="#header-examples-Admins-GetApiV1AdminsUserId-0_0_0-0" role="tab"
-            data-toggle="tab">Header-Example:</a>
+          <a href="#header-examples-Admins-GetApiV1AdminsUserId-0_0_0-0" role="tab" data-toggle="tab">Header-Example:</a>
         </li>
       </ul>
 
       <div class="tab-content">
         <div class="tab-pane active" id="header-examples-Admins-GetApiV1AdminsUserId-0_0_0-0">
-          <pre data-type="json" class=" language-json" tabindex="0"><code class=" language-json"><span class="token punctuation">{</span>
-<span class="token property">"authorization"</span><span class="token operator">:</span> <span class="token string">"Bearer eyJhbGciOiJIUzI1..."</span>
-<span class="token punctuation">}</span></code></pre>
+          <pre data-type="json" class=" language-json" tabindex="0">
+            <code class=" language-json">
+              <span class="token punctuation">{</span>
+              <span class="token property">"authorization"</span>
+              <span class="token operator">:</span>
+              <span class="token string">"Bearer eyJhbGciOiJIUzI1..."</span>
+              <span class="token punctuation">}</span>
+            </code>
+          </pre>
         </div>
       </div>
-
 
       <h2>Parameter</h2>
       <table>
@@ -176,17 +176,10 @@
             </td>
             <td>
               <p>id of user (userId)</p>
-
-
             </td>
           </tr>
         </tbody>
       </table>
-
-
-
-
-
 
       <h2>Success 200</h2>
       <table>
@@ -201,43 +194,39 @@
           <tr>
             <td class="code">success
             </td>
-            <td class="code">
-              Boolean
-            </td>
-            <td>
-              <p>true.</p>
-
-
-            </td>
+            <td class="code">Boolean</td>
+            <td><p>true.</p></td>
           </tr>
           <tr>
-            <td class="code">user
-            </td>
-            <td class="code">
-              Object
-            </td>
-            <td>
-              <p>Return user information.</p>
-
-
-            </td>
+            <td class="code">user</td>
+            <td class="code">Object</td>
+            <td><p>Return user information.</p></td>
           </tr>
         </tbody>
       </table>
       <ul class="nav nav-tabs nav-tabs-examples" role="tablist">
         <li class="active">
-          <a href="#success-examples-Admins-GetApiV1AdminsUserId-0_0_0-0" role="tab"
-            data-toggle="tab">Success</a>
+          <a href="#success-examples-Admins-GetApiV1AdminsUserId-0_0_0-0" role="tab" data-toggle="tab">Success</a>
         </li>
       </ul>
 
       <div class="tab-content">
         <div class="tab-pane active" id="success-examples-Admins-GetApiV1AdminsUserId-0_0_0-0">
-          <pre data-type="json" class=" language-json"
-            tabindex="0"><code class=" language-json">HTTP/<span class="token number">1.1</span> <span class="token number">200</span> ok
-<span class="token punctuation">{</span>
-<span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-<span class="token property">"user"</span><span class="token operator">:</span> <span class="token punctuation">{</span>...<span class="token punctuation">}</span></code></pre>
+          <pre data-type="json" class=" language-json" tabindex="0">
+            <code class=" language-json">HTTP/
+              <span class="token number">1.1</span> 
+              <span class="token number">200</span> ok
+              <span class="token punctuation">{</span>
+              <span class="token property">"success"</span>
+              <span class="token operator">:</span> 
+              <span class="token boolean">true</span>
+              <span class="token punctuation">,</span>
+              <span class="token property">"user"</span>
+              <span class="token operator">:</span> 
+              <span class="token punctuation">{</span>...
+                <span class="token punctuation">}</span>
+              </code>
+            </pre>
         </div>
       </div>
 
@@ -255,73 +244,82 @@
           <tr>
             <td class="code">success
             </td>
-            <td class="code">
-              Boolean
-            </td>
-            <td>
-              <p>false.</p>
-
-
-            </td>
+            <td class="code">Boolean</td>
+            <td><p>false.</p></td>
           </tr>
           <tr>
-            <td class="code">error
-            </td>
-            <td class="code">
-              String
-            </td>
-            <td>
-              <p>message</p>
-
-
-            </td>
+            <td class="code">error</td>
+            <td class="code">String</td>
+            <td><p>message</p></td>
           </tr>
         </tbody>
       </table>
       <ul class="nav nav-tabs nav-tabs-examples" role="tablist">
         <li class="active">
-          <a href="#error-examples-Admins-GetApiV1AdminsUserId-0_0_0-0" role="tab"
-            data-toggle="tab">Error-Response:</a>
+          <a href="#error-examples-Admins-GetApiV1AdminsUserId-0_0_0-0" role="tab" data-toggle="tab">Error-Response:</a>
         </li>
         <li>
-          <a href="#error-examples-Admins-GetApiV1AdminsUserId-0_0_0-1" role="tab"
-            data-toggle="tab">Error-Response:</a>
+          <a href="#error-examples-Admins-GetApiV1AdminsUserId-0_0_0-1" role="tab" data-toggle="tab">Error-Response:</a>
         </li>
         <li>
-          <a href="#error-examples-Admins-GetApiV1AdminsUserId-0_0_0-2" role="tab"
-            data-toggle="tab">Error-Response:</a>
+          <a href="#error-examples-Admins-GetApiV1AdminsUserId-0_0_0-2" role="tab" data-toggle="tab">Error-Response:</a>
         </li>
       </ul>
 
       <div class="tab-content">
         <div class="tab-pane active" id="error-examples-Admins-GetApiV1AdminsUserId-0_0_0-0">
-          <pre data-type="json" class=" language-json" tabindex="0"><code class=" language-json">   HTTP/<span class="token number">1.1</span> <span class="token number">401</span> unautorized
-<span class="token punctuation">{</span>
-<span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-<span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"Unautorized"</span>
-<span class="token punctuation">}</span></code></pre>
+          <pre data-type="json" class=" language-json" tabindex="0">
+            <code class=" language-json">   HTTP/
+              <span class="token number">1.1</span> 
+              <span class="token number">401</span> unautorized
+              <span class="token punctuation">{</span>
+              <span class="token property">"success"</span>
+              <span class="token operator">:</span> 
+              <span class="token boolean">false</span>
+              <span class="token punctuation">,</span>
+              <span class="token property">"error"</span>
+              <span class="token operator">:</span> 
+              <span class="token string">"Unautorized"</span>
+              <span class="token punctuation">}</span>
+            </code>
+          </pre>
         </div>
         <div class="tab-pane" id="error-examples-Admins-GetApiV1AdminsUserId-0_0_0-1">
-          <pre data-type="json" class=" language-json" tabindex="0"><code class=" language-json">   HTTP/<span class="token number">1.1</span> <span class="token number">404</span> notFound
-<span class="token punctuation">{</span>
-<span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-<span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"Invalid ObjectId"</span>
-<span class="token punctuation">}</span></code></pre>
+          <pre data-type="json" class=" language-json" tabindex="0">
+            <code class=" language-json">   HTTP/
+              <span class="token number">1.1</span> 
+              <span class="token number">404</span> notFound
+              <span class="token punctuation">{</span>
+              <span class="token property">"success"</span>
+              <span class="token operator">:</span> 
+              <span class="token boolean">false</span>
+              <span class="token punctuation">,</span>
+              <span class="token property">"error"</span>
+              <span class="token operator">:</span> 
+              <span class="token string">"Invalid ObjectId"</span>
+              <span class="token punctuation">}</span>
+            </code>
+          </pre>
         </div>
         <div class="tab-pane" id="error-examples-Admins-GetApiV1AdminsUserId-0_0_0-2">
-          <pre data-type="json" class=" language-json" tabindex="0"><code class=" language-json">   HTTP/<span class="token number">1.1</span> <span class="token number">400</span> NotFound
-<span class="token punctuation">{</span>
-<span class="token property">"success"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-<span class="token property">"error"</span><span class="token operator">:</span> <span class="token string">"User Not Found"</span>
-<span class="token punctuation">}</span></code></pre>
+          <pre data-type="json" class=" language-json" tabindex="0">
+            <code class=" language-json">   HTTP/
+              <span class="token number">1.1</span> 
+              <span class="token number">400</span> NotFound
+              <span class="token punctuation">{</span>
+              <span class="token property">"success"</span>
+              <span class="token operator">:</span> 
+              <span class="token boolean">false</span>
+              <span class="token punctuation">,</span>
+              <span class="token property">"error"</span>
+              <span class="token operator">:</span> 
+              <span class="token string">"User Not Found"</span>
+              <span class="token punctuation">}</span>
+            </code>
+          </pre>
         </div>
       </div>
-
-
-
-
     </article>
-
   </div>
 </section>
 
@@ -332,7 +330,7 @@
 <div id="generator">
   <div>
     <p class="text-muted">
-      Generated with <a href="https://github.com/apidocgo">ApiDocGo</a> 0.0.1 - 2022-5-30 13:55:19
+      Generated with <a href="https://github.com/apidocgo">ApiDocGo</a> 0.0.1 - 2022-5-30 14:10:0
     </p>
   </div>
 </div>
