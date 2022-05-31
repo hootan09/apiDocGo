@@ -19,6 +19,8 @@
 
   <div class="container-fluid">
     <div class="row">
+
+      <!-- side nav -->
       <div id="sidenav" class="span2">
         {{range .}}
           {{if .api}}
@@ -26,18 +28,26 @@
           {{end}}
         {{end}}
       </div>
+
       <div id="content">
+
         <div id="project">
           {{template "project"}}
         </div>
+
         <div id="header"></div>
+
+        <!-- main -->
         <div id="sections">
           {{template "sections"}}
         </div>
+
         <div id="footer"></div>
+
         <div id="generator">
           {{template "generator_details"}}
         </div>
+
       </div>
     </div>
   </div>
