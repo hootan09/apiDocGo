@@ -20,7 +20,11 @@
   <div class="container-fluid">
     <div class="row">
       <div id="sidenav" class="span2">
-        {{template "side_nav"}}
+        {{range .}}
+          {{if .api}}
+            {{template "side_nav" .}}
+          {{end}}
+        {{end}}
       </div>
       <div id="content">
         <div id="project">
@@ -87,14 +91,15 @@
   <ul class="sidenav nav nav-list list">
 
     <!-- code section  -->
-    <li class="nav-header nav-list-item" data-group="Admins"><a href="#api-Admins" data-group="show-api-Admins"
-        class="show-group api-Admins-init">Admins</a></li>
+    <li class="nav-header nav-list-item" data-group="{{if .apigroup}}{{.apigroup.Title}}{{end}}"><a href="#api-{{.apigroup.Title}}" data-group="show-api-{{.apigroup.Title}}"
+        class="show-group api-{{.apigroup.Title}}-init">{{if .apigroup}}{{.apigroup.Title}}{{end}}</a>
+    </li>
 
-    <li class="" data-group="Admins" data-name="GetApiV1AdminsUserId" data-version="0.0.0">
-      <a href="#api-Admins-GetApiV1AdminsUserId" title="/api/v1/admins/user/:id" data-group="show-api-Admins"
-        data-name="show-api-Admins-GetApiV1AdminsUserId"
-        class="nav-list-item show-api api-Admins-GetApiV1AdminsUserId-init">get user profile by admin<div
-          class="nav-list-url-item hide">/api/v1/admins/user/:id</div></a>
+    <li class="" data-group="{{.apigroup.Title}}" data-name="{{if .apigroup}}{{CreateId .api.Url}}{{end}}" data-version="0.0.0">
+      <a href="#api-{{.apigroup.Title}}-{{CreateId .api.Url}}" title="{{.api.Url}}" data-group="show-api-{{.apigroup.Title}}"
+        data-name="show-api-{{.apigroup.Title}}-{{CreateId .api.Url}}"
+        class="nav-list-item show-api api-{{.apigroup.Title}}}-{{CreateId .api.Url}}-init">{{if .api}}{{.api.Title}}{{end}}<div
+          class="nav-list-url-item hide">{{if .api}}{{.api.Url}}{{end}}</div></a>
     </li>
     <!-- end of code section -->
 
@@ -164,7 +169,8 @@
 
       <p>
         Permission:token
-        <button type="button" class="btn btn-info btn-xs" data-title="Users with token access only"
+        <button type="button" class="btn btn-info btn-xs" 
+          data-title="Users with token access only" 
           data-content="<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
           data-html="true" data-toggle="popover" data-placement="right" data-trigger="hover"
           data-original-title="" title="">

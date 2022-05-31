@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 )
 
@@ -29,6 +30,11 @@ func WriteDoc(Documents []interface{}, ApiDocGoVersion string) {
 		},
 		"Config": func() map[string]string {
 			return DefaultConfig
+		},
+		"CreateId": func(text string) string {
+
+			cleaned := strings.Replace(text, ":", "", -1)
+			return strings.Join(strings.Split(strings.Title(cleaned), "/"), "")
 		},
 	}).ParseFiles("./template/index.gohtml")
 	if err != nil {
