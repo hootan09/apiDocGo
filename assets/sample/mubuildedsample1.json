@@ -1,0 +1,78 @@
+[
+    {
+        "apidefine": {
+            "name": "token",
+            "title": "Admins with token access only",
+            "description": "the token always send with Headers \u003ccode\u003eauthorization\u003c/code\u003e and \u003ccode\u003eBearer\u003c/code\u003e in Token String"
+        }
+    },
+    {
+        "api": {
+            "type": "get",
+            "url": "/api/v1/admins/user/:id",
+            "title": "get user profile by admin"
+        },
+        "apidescription": {
+            "title": "get_user_profile_by_admin_token_only_the_\u003ccode\u003eadmin_with_token\u003c/code\u003e_can_get_it"
+        },
+        "apierror": {
+            "group": "Error 4xx",
+            "type": "String",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "error",
+            "defaultVale": "",
+            "description": "message"
+        },
+        "apierrorexample": {
+            "title": "Error-Response:",
+            "type": "json",
+            "content": "HTTP/1.1 400 NotFound\n\n  {\n\n       \"success\": false,\n\n       \"error\": \"User Not Found\"\n\n   }"
+        },
+        "apigroup": {
+            "title": "Admins"
+        },
+        "apiheader": {
+            "group": "Header",
+            "type": "String",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "authorization",
+            "defaultVale": "",
+            "description": "Users unique token \u003ccode\u003e\"Bearer XXXXXXXXXXXXX\"\u003c/code\u003e."
+        },
+        "apiheaderexample": {
+            "title": "Header-Example:",
+            "type": "json",
+            "content": "{\n\n       \"authorization\": \"Bearer eyJhbGciOiJIUzI1...\"\n\n     }"
+        },
+        "apiparam": {
+            "group": "Parameter",
+            "type": "String",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "id",
+            "defaultVale": "",
+            "description": "id of user (userId)"
+        },
+        "apipermission": "token",
+        "apisuccess": {
+            "group": "Success 200",
+            "type": "Object",
+            "size": "",
+            "allowedValues": null,
+            "optional": false,
+            "field": "user",
+            "defaultVale": "",
+            "description": "Return user information."
+        },
+        "apisuccessexample": {
+            "title": "Success",
+            "type": "json",
+            "content": "HTTP/1.1 200 ok\n\n {\n\n   \"success\": true,\n\n   \"user\": {...}"
+        }
+    }
+]

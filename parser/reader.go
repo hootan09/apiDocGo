@@ -86,6 +86,9 @@ func ParseDocArray(docArray [][]string) {
 		for _, line := range eachDoc {
 			splitEachCommentBySpace := strings.SplitN(line, " ", 2)
 			switch strings.ToLower(splitEachCommentBySpace[0]) {
+			case "define":
+				result := Api_define(splitEachCommentBySpace[1])
+				ParsedDoc["apidefine"] = *result
 			case "":
 				result := Api(splitEachCommentBySpace[1])
 				ParsedDoc["api"] = *result
@@ -104,9 +107,6 @@ func ParseDocArray(docArray [][]string) {
 			case "version":
 				result := Api_version(splitEachCommentBySpace[1])
 				ParsedDoc["apiversion"] = result
-			case "define":
-				result := Api_define(splitEachCommentBySpace[1])
-				ParsedDoc["apidefine"] = *result
 			case "permission":
 				result := Api_permission(splitEachCommentBySpace[1])
 				ParsedDoc["apipermission"] = result
