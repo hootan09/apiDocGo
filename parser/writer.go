@@ -21,7 +21,7 @@ var DefaultConfig = map[string]string{
 //get apidocgo json config file if exists by using os.Getwd()
 // render index.html with go html/template file
 
-func WriteDoc(Documents []interface{}, ApiDocGoVersion string) {
+func WriteDoc(documents Documents, ApiDocGoVersion string) {
 	tpl, err := template.New("index.gohtml").Funcs(template.FuncMap{
 		"Time": func() string {
 			return time.Now().Format("2006-1-2 15:4:5")
@@ -55,7 +55,7 @@ func WriteDoc(Documents []interface{}, ApiDocGoVersion string) {
 
 	defer f.Close()
 
-	err = tpl.Execute(f, Documents)
+	err = tpl.Execute(f, documents)
 	if err != nil {
 		log.Fatal(err)
 	}

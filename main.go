@@ -16,12 +16,12 @@ func main() {
 
 	Documents := parser.ReadDoc("./examples")
 
-	json_data, err := json.Marshal(Documents)
+	json_data, err := json.Marshal(*Documents)
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(string(json_data))
 
-	parser.WriteDoc(Documents, ApiDocGoVersion)
+	parser.WriteDoc(*Documents, ApiDocGoVersion)
 
 }

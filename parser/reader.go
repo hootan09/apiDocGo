@@ -11,10 +11,19 @@ import (
 )
 
 var DocumentsArray [][]string
-var Result []interface{}
+
+type Documents struct {
+	ApiDefine map[string]interface{}   `json: "api_define"`
+	Groups    map[string][]interface{} `json: "groups"`
+}
+
+var parsedDocuments Documents
 
 // Reading definded path directory for finding go files & Documents
-func ReadDoc(codesPath string) []interface{} {
+func ReadDoc(codesPath string) *Documents {
+	parsedDocuments.ApiDefine = make(map[string]interface{})
+	parsedDocuments.Groups = make(map[string][]interface{})
+
 	err := filepath.Walk(codesPath, func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
 			fmt.Printf("prevent panic by handling failure accessing a path %q: %v\n", path, err)
@@ -37,8 +46,7 @@ func ReadDoc(codesPath string) []interface{} {
 	}
 
 	// parsing Document array by parser
-	ParseDocArray(DocumentsArray)
-	return Result
+	return ParseDocArray(DocumentsArray)
 }
 
 // using go token parser for finding comments
@@ -80,7 +88,7 @@ func GetTrimedComments(path string) [][]string {
 	return trimmedComments
 }
 
-func ParseDocArray(docArray [][]string) {
+func ParseDocArray(docArray [][]string) *Documents {
 	for _, eachDoc := range docArray {
 		var ParsedDoc = make(map[string]interface{})
 		for _, line := range eachDoc {
@@ -88,7 +96,7 @@ func ParseDocArray(docArray [][]string) {
 			switch strings.ToLower(splitEachCommentBySpace[0]) {
 			case "define":
 				result := Api_define(splitEachCommentBySpace[1])
-				ParsedDoc["apidefine"] = *result
+				parsedDocuments.ApiDefine[result.Name] = *result
 			case "":
 				result := Api(splitEachCommentBySpace[1])
 				ParsedDoc["api"] = *result
@@ -150,6 +158,11 @@ func ParseDocArray(docArray [][]string) {
 				log.Printf("@%s 'No Case match to parse'\n", splitEachCommentBySpace[0])
 			}
 		}
-		Result = append(Result, ParsedDoc)
+		// because of "ApiDefine" we have one nil record
+		if ParsedDoc["apigroup"] != nil {
+			key := ParsedDoc["apigroup"].(ApiGroupStruct).Title
+			parsedDocuments.Groups[key] = append(parsedDocuments.Groups[key], ParsedDoc)
+		}
 	}
+	return &parsedDocuments
 }

@@ -22,10 +22,8 @@
 
       <!-- side nav -->
       <div id="sidenav" class="span2">
-        {{range .}}
-          {{if .api}}
+        {{range .Groups}}
             {{template "side_nav" .}}
-          {{end}}
         {{end}}
       </div>
 
@@ -39,7 +37,7 @@
 
         <!-- main -->
         <div id="sections">
-          {{range .}}
+          {{range .Groups}}
             {{if .api}}
               {{template "sections" .}}
             {{end}}
