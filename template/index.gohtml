@@ -192,7 +192,9 @@
         {{end}}
       {{end}}
 
-      <h2>Header</h2>
+     <!--api_header-->
+
+      <!-- <h2>Header</h2>
       <table>
         <thead>
           <tr>
@@ -213,8 +215,11 @@
             </td>
           </tr>
         </tbody>
-      </table>
-      <ul class="nav nav-tabs nav-tabs-examples" role="tablist">
+      </table> -->
+
+      <!-- api_header_example-->
+
+      <!-- <ul class="nav nav-tabs nav-tabs-examples" role="tablist">
         <li class="active">
           <a href="#header-examples-Admins-GetApiV1AdminsUserId-0_0_0-0" role="tab" data-toggle="tab">Header-Example:</a>
         </li>
@@ -232,30 +237,33 @@
             </code>
           </pre>
         </div>
-      </div>
+      </div> -->
 
-      <h2>Parameter</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 60%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">id
-            </td>
-            <td class="code">
-              String
-            </td>
-            <td>
-              <p>id of user (userId)</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
+      {{block "api_params" .}}
+        <h2>Parameter</h2>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 30%">Field</th>
+              <th style="width: 10%">Type</th>
+              <th style="width: 60%">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="code">id
+              </td>
+              <td class="code">
+                String
+              </td>
+              <td>
+                <p>id of user (userId)</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      {{end}}
 
       <h2>Success 200</h2>
       <table>
