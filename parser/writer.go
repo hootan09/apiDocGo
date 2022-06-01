@@ -14,6 +14,7 @@ var DefaultConfig = map[string]string{
 	"name":        "Acme project",
 	"version":     "0.0.0",
 	"description": "REST Api Doc",
+	"url":         "http://localhost:8080/apidoc",
 }
 
 //TODO
@@ -35,6 +36,12 @@ func WriteDoc(Documents []interface{}, ApiDocGoVersion string) {
 
 			cleaned := strings.Replace(text, ":", "", -1)
 			return strings.Join(strings.Split(strings.Title(cleaned), "/"), "")
+		},
+		"GetUrlMethod": func() string {
+			return strings.SplitN(DefaultConfig["url"], ":", 2)[0]
+		},
+		"GetStaticPath": func() string {
+			return strings.SplitN(DefaultConfig["url"], ":", 2)[1]
 		},
 	}).ParseFiles("./template/index.gohtml")
 	if err != nil {

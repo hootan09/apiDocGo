@@ -32,3 +32,5 @@ Todo:
 - [ ] Using go embed for saving static file in binary build
 - [ ] Using go flag for some things like serving - (builded content) | source path | destination path
     - [ ] Example `"$ apidocgo -i routes/ -o public/apidoc"`
+    - [ ] Example `"$ apidocgo init"` create apidocgo.yml in cwd
+    - [ ] Example `"$ apidocgo server -p 8080"` Small Server for serving statics file in port and showing in console `"server running at http://localhost:port"`

@@ -39,7 +39,11 @@
 
         <!-- main -->
         <div id="sections">
-          {{template "sections"}}
+          {{range .}}
+            {{if .api}}
+              {{template "sections" .}}
+            {{end}}
+          {{end}}
         </div>
 
         <div id="footer"></div>
@@ -105,7 +109,7 @@
         class="show-group api-{{.apigroup.Title}}-init">{{if .apigroup}}{{.apigroup.Title}}{{end}}</a>
     </li>
 
-    <li class="" data-group="{{.apigroup.Title}}" data-name="{{if .apigroup}}{{CreateId .api.Url}}{{end}}" data-version="{{if apiversion}}{{apiversion}}{{else}}0.0.0{{end}}">
+    <li class="" data-group="{{.apigroup.Title}}" data-name="{{if .apigroup}}{{CreateId .api.Url}}{{end}}" data-version="{{if .apiversion}}{{.apiversion}}{{else}}0.0.0{{end}}">
       <a href="#api-{{.apigroup.Title}}-{{CreateId .api.Url}}" title="{{.api.Url}}" data-group="show-api-{{.apigroup.Title}}"
         data-name="show-api-{{.apigroup.Title}}-{{CreateId .api.Url}}"
         class="nav-list-item show-api api-{{.apigroup.Title}}}-{{CreateId .api.Url}}-init">{{if .api}}{{.api.Title}}{{end}}<div
@@ -142,19 +146,19 @@
 
 <!--section-->
 {{define "sections"}}
-<section id="api-Admins" class="show-api-group show-api-Admins-group">
-  <h1 class="color-primary font-weight-bold">Admins</h1>
+<section id="api-{{.apigroup}}" class="show-api-group show-api-{{.apigroup}}-group">
+  <h1 class="color-primary font-weight-bold">{{.apigroup.Title}}</h1>
 
-  <div id="api-Admins-GetApiV1AdminsUserId" class="show-api-article show-api-Admins-article show-api-Admins-GetApiV1AdminsUserId-article ">
+  <div id="api-{{.apigroup}}-{{CreateId .api.Url}}" class="show-api-article show-api-{{.apigroup}}-article show-api-{{.apigroup}}-{{CreateId .api.Url}}-article ">
 
-    <article id="api-Admins-GetApiV1AdminsUserId-0.0.0" data-group="Admins" data-name="GetApiV1AdminsUserId" data-version="0.0.0" class="">
+    <article id="api-{{.apigroup}}-{{CreateId .api.Url}}-{{if .apiversion}}{{.apiversion}}{{else}}0.0.0{{end}}" data-group="{{.apigroup}}" data-name="{{CreateId .api.Url}}" data-version="{{if .apiversion}}{{.apiversion}}{{else}}0.0.0{{end}}" class="">
       <div class="pull-left">
-        <h1><span class="color-primary">Admins</span> <span class="text-muted">|</span> get user profile by admin</h1>
+        <h1><span class="color-primary">{{.apigroup.Title}}</span> <span class="text-muted">|</span> {{.api.Title}}</h1>
       </div>
       <div class="pull-right">
         <div class="btn-group">
           <button class="version btn btn-default dropdown-toggle" data-toggle="dropdown">
-            <strong>0.0.0</strong>&nbsp;<span class="caret"></span>
+            <strong>{{if .apiversion}}{{.apiversion}}{{else}}0.0.0{{end}}</strong>&nbsp;<span class="caret"></span>
           </button>
           <ul class="versions dropdown-menu open-left">
             <li class="disabled"><a href="#">compare changes to:</a></li>
@@ -164,29 +168,29 @@
       </div>
       <div class="clearfix"></div>
 
-      <p></p>
-      <p>get user profile by admin token</p>
-      <p>only the <code>admin with token</code> can get it</p>
-      <p></p>
-      <span class="method meth-get">get</span>
-      <pre data-type="get" class=" language-http" tabindex="0">
-        <code class=" language-http">
-          <span class="token header-name keyword">
-            https:
-          </span>//xxxx.heroku.com/api/v1/admins/user/:id
-        </code>
-      </pre>
+      {{block "api_description" .}}
+        <p>{{.apidescription.Title}}</p>
+      {{end}}
 
-      <p>
-        Permission:token
-        <button type="button" class="btn btn-info btn-xs" 
-          data-title="Users with token access only" 
-          data-content="<p>the token always send with Headers <code>authorization</code> and <code>Bearer</code> in Token String</p>"
-          data-html="true" data-toggle="popover" data-placement="right" data-trigger="hover"
-          data-original-title="" title="">
-          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-        </button>
-      </p>
+      {{block "api_url_section" .}}
+        <span class="method meth-{{.api.Type}}">{{.api.Type}}</span>
+        <pre data-type="{{.api.Type}}" class=" language-http" tabindex="0"><code class=" language-http"><span class="token header-name keyword">{{GetUrlMethod}}:</span>{{GetStaticPath}}{{.api.Url}}</code></pre>
+      {{end}}
+
+      {{block "permission_section" .}}
+        {{if .apidefine}}
+          <p>
+            Permission:{{.apidefine.Name}}
+            <button type="button" class="btn btn-info btn-xs" 
+              data-title="{{.apidefine.Title}}" 
+              data-content="<p>{{.apidefine.Description}}</p>"
+              data-html="true" data-toggle="popover" data-placement="right" data-trigger="hover"
+              data-original-title="" title="">
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+            </button>
+          </p>
+        {{end}}
+      {{end}}
 
       <h2>Header</h2>
       <table>
