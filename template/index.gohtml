@@ -22,9 +22,7 @@
 
       <!-- side nav -->
       <div id="sidenav" class="span2">
-        {{range .Groups}}
-            {{template "side_nav" .}}
-        {{end}}
+            {{template "side_nav" .Groups}}
       </div>
 
       <div id="content">
@@ -38,7 +36,7 @@
         <!-- main -->
         <div id="sections">
           {{range .Groups}}
-            {{if .api}}
+            {{range .}}
               {{template "sections" .}}
             {{end}}
           {{end}}
@@ -102,18 +100,20 @@
   </div>
   <ul class="sidenav nav nav-list list">
 
-    <!-- code section  -->
-    <li class="nav-header nav-list-item" data-group="{{if .apigroup}}{{.apigroup.Title}}{{end}}"><a href="#api-{{.apigroup.Title}}" data-group="show-api-{{.apigroup.Title}}"
-        class="show-group api-{{.apigroup.Title}}-init">{{if .apigroup}}{{.apigroup.Title}}{{end}}</a>
-    </li>
+    {{range $key,$val := .}}
+      <li class="nav-header nav-list-item" data-group="{{$key}}"><a href="#api-{{$key}}" data-group="show-api-{{$key}}"
+          class="show-group api-{{$key}}-init">{{$key}}</a>
+      </li>
 
-    <li class="" data-group="{{.apigroup.Title}}" data-name="{{if .apigroup}}{{CreateId .api.Url}}{{end}}" data-version="{{if .apiversion}}{{.apiversion}}{{else}}0.0.0{{end}}">
-      <a href="#api-{{.apigroup.Title}}-{{CreateId .api.Url}}" title="{{.api.Url}}" data-group="show-api-{{.apigroup.Title}}"
-        data-name="show-api-{{.apigroup.Title}}-{{CreateId .api.Url}}"
-        class="nav-list-item show-api api-{{.apigroup.Title}}}-{{CreateId .api.Url}}-init">{{if .api}}{{.api.Title}}{{end}}<div
-          class="nav-list-url-item hide">{{if .api}}{{.api.Url}}{{end}}</div></a>
-    </li>
-    <!-- end of code section -->
+      {{range $val}}
+        <li class="" data-group="{{.apigroup.Title}}" data-name="{{if .apigroup}}{{CreateId .api.Url}}{{end}}" data-version="{{if .apiversion}}{{.apiversion}}{{else}}0.0.0{{end}}">
+          <a href="#api-{{.apigroup.Title}}-{{CreateId .api.Url}}" title="{{.api.Url}}" data-group="show-api-{{.apigroup.Title}}"
+            data-name="show-api-{{.apigroup.Title}}-{{CreateId .api.Url}}"
+            class="nav-list-item show-api api-{{.apigroup.Title}}}-{{CreateId .api.Url}}-init">{{if .api}}{{.api.Title}}{{end}}<div
+              class="nav-list-url-item hide">{{if .api}}{{.api.Url}}{{end}}</div></a>
+        </li>
+      {{end}}
+    {{end}}
 
   </ul>
 </nav>
