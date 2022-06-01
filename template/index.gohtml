@@ -144,12 +144,12 @@
 
 <!--section-->
 {{define "sections"}}
-<section id="api-{{.apigroup}}" class="show-api-group show-api-{{.apigroup}}-group">
+<section id="api-{{.apigroup.Title}}" class="show-api-group show-api-{{.apigroup.Title}}-group">
   <h1 class="color-primary font-weight-bold">{{.apigroup.Title}}</h1>
 
-  <div id="api-{{.apigroup}}-{{CreateId .api.Url}}" class="show-api-article show-api-{{.apigroup}}-article show-api-{{.apigroup}}-{{CreateId .api.Url}}-article ">
+  <div id="api-{{.apigroup.Title}}-{{CreateId .api.Url}}" class="show-api-article show-api-{{.apigroup.Title}}-article show-api-{{.apigroup.Title}}-{{CreateId .api.Url}}-article ">
 
-    <article id="api-{{.apigroup}}-{{CreateId .api.Url}}-{{if .apiversion}}{{.apiversion}}{{else}}0.0.0{{end}}" data-group="{{.apigroup}}" data-name="{{CreateId .api.Url}}" data-version="{{if .apiversion}}{{.apiversion}}{{else}}0.0.0{{end}}" class="">
+    <article id="api-{{.apigroup.Title}}-{{CreateId .api.Url}}-{{if .apiversion}}{{.apiversion}}{{else}}0.0.0{{end}}" data-group="{{.apigroup.Title}}" data-name="{{CreateId .api.Url}}" data-version="{{if .apiversion}}{{.apiversion}}{{else}}0.0.0{{end}}" class="">
       <div class="pull-left">
         <h1><span class="color-primary">{{.apigroup.Title}}</span> <span class="text-muted">|</span> {{.api.Title}}</h1>
       </div>
