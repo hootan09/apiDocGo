@@ -7,5 +7,9 @@ build:
 	go build .
 run:
 	go run .
+help:
+	go run . -h
+serve:
+	go run . -p 8080
 
 .PHONY: doc test build run
