@@ -13,8 +13,7 @@ const (
 
 func main() {
 	//parse flags
-	hasServe := cmd.ParseFlags()
-	println(hasServe)
+	cmd.ParseFlags() //hasServe := cmd.ParseFlags() if (hasserve == true) must run http static server with cmd.Port
 
 	Documents := parser.ReadDoc("./examples") //must be dynamic path by user
 
