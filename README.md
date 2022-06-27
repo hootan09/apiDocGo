@@ -12,11 +12,11 @@ Todo:
 - [X] Parse @apiExample
 - [X] parse @apiGroup
 - [X] parse @apiName
-- [X] parse @apiParam (Must be Fixed in iterate map)
+- [-] parse @apiParam (Must be Fixed in iterate map)
 - [-] parse @apiErrorExample
 - [X] parse @apiError
 - [-] parse @apiHeaderExample
-- [X] parse @apiHeader
+- [-] parse @apiHeader (must accept multiple fileds)
 - [-] parse @apiParamExample
 - [X] parse @apiUse
 - [X] parse @apiPermission
