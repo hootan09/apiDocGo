@@ -9,10 +9,10 @@ import (
 	"time"
 )
 
-// if JSON config file not exist must using this
+// if yml config file not exist must using this
 var DefaultConfig = map[string]string{
 	"name":        "Acme project",
-	"version":     "0.0.0",
+	"version":     "0.0.1",
 	"description": "REST Api Doc",
 	"url":         "http://localhost:8080/apidoc",
 }
