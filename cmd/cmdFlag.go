@@ -47,7 +47,7 @@ func ParseFlags() (hasServe bool) {
 		if err2 != nil {
 			log.Fatal(err2)
 		}
-		err3 := ioutil.WriteFile(path.Join(strPath, "apidocgo.yml"), data, 0666)
+		err3 := ioutil.WriteFile(path.Join(strPath, parser.ConfigFileName), data, 0666)
 		if err3 != nil {
 			log.Fatal(err3)
 		}

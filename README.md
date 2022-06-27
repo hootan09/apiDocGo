@@ -26,10 +26,10 @@ Todo:
 - [X] parse @apiSuccess
 - [X] parse @apiVersion
 - [X] Reader Functionality
-- [ ] Writer Functionality
+- [X] Writer Functionality
 - [X] ApiDOcGo yml config file
     - [X] Get cwd as path and looking for apidocgo.yml
-- [ ] Using go embed for saving static file in binary build
+- [X] Using go embed for saving static file in binary build
 - [ ] Using go flag for some things like serving - (builded content) | source path | destination path
     - [ ] Example `"$ apidocgo -i routes/ -o public/apidoc"`
     - [X] Example `"$ apidocgo init"` create apidocgo.yml in cwd
