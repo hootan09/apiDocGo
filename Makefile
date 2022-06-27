@@ -11,5 +11,7 @@ help:
 	go run . -h
 serve:
 	go run . -p 8080
+install:
+	go install .
 
-.PHONY: doc test build run
+.PHONY: doc test build run help serve install

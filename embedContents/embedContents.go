@@ -11,6 +11,9 @@ import (
 //go:embed assets
 var Assets embed.FS
 
+//go:embed template/index.gohtml
+var TemplateFile embed.FS
+
 func CreateAssetsFolder(dirName string) error {
 	workingDir, wdErr := os.Getwd()
 	if wdErr != nil {

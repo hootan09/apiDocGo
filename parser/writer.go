@@ -57,7 +57,7 @@ func WriteDoc(documents Documents, ApiDocGoVersion string) {
 		"GetStaticPath": func() string {
 			return strings.SplitN(DefaultConfig["url"], ":", 2)[1]
 		},
-	}).ParseFiles("./template/index.gohtml")
+	}).ParseFS(embedcontents.TemplateFile, "template/index.gohtml")
 	if err != nil {
 		log.Fatal(err)
 	}
