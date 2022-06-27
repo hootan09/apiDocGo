@@ -17,9 +17,8 @@ var (
 	ShowHelp bool
 )
 
-func ParseFlags() (hasServe bool) {
-	hasServe = false
-
+func ParseFlags() (port int) {
+	port = 0
 	ShowHelp := flag.Bool("h", false, "Print Usage Help")
 	Init := flag.Bool("init", false, "initialization apidocgo.yml")
 	Port := flag.Int("p", 0, "Port Addres for Serve Builded Documents")
@@ -54,8 +53,7 @@ func ParseFlags() (hasServe bool) {
 	}
 	//serve Builded Document as web Server (note: the "Port" is public access from "cmd" package)
 	if *Port > 0 {
-		hasServe = true
+		port = *Port
 	}
-
-	return hasServe
+	return port
 }

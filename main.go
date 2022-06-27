@@ -3,7 +3,11 @@ package main
 import (
 	"ApiDocGo/cmd"
 	"ApiDocGo/parser"
+	"fmt"
 	"log"
+	"net/http"
+	"os"
+	"path"
 )
 
 const (
@@ -11,11 +15,10 @@ const (
 )
 
 func main() {
-	//parse flags
-	cmd.ParseFlags() //hasServe := cmd.ParseFlags() if (hasserve == true) must run http static server with cmd.Port
+	/* parse flags */
 
+	port := cmd.ParseFlags()
 	Documents := parser.ReadDoc("./examples") //must be dynamic path by user
-
 	// json_data, err := json.Marshal(*Documents)
 	// if err != nil {
 	// 	fmt.Println(err)
@@ -25,5 +28,18 @@ func main() {
 	parser.WriteDoc(*Documents, ApiDocGoVersion)
 
 	log.Println("Build Done!")
+
+	// if serve static file is true
+	if port > 0 {
+		wdPath, _ := os.Getwd()
+		buildPath := path.Join(wdPath, parser.BuildFolderName)
+		fs := http.FileServer(http.Dir(buildPath))
+		http.Handle("/", fs)
+		log.Printf("Listening on :%d...", port)
+		err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 
 }
