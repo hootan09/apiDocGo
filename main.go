@@ -35,7 +35,7 @@ func main() {
 		buildPath := path.Join(wdPath, parser.BuildFolderName)
 		fs := http.FileServer(http.Dir(buildPath))
 		http.Handle("/", fs)
-		log.Printf("Listening on :%d...", port)
+		log.Printf("Listening on http://localhost:%d", port)
 		err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 		if err != nil {
 			log.Fatal(err)

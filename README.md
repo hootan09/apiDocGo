@@ -30,7 +30,7 @@ Todo:
 - [X] ApiDOcGo yml config file
     - [X] Get cwd as path and looking for apidocgo.yml
 - [X] Using go embed for saving static file in binary build
-- [ ] Using go flag for some things like serving - (builded content) | source path | destination path
+- [X] Using go flag for some things like serving - (builded content) | source path | destination path
     - [ ] Example `"$ apidocgo -i routes/ -o public/apidoc"`
     - [X] Example `"$ apidocgo init"` create apidocgo.yml in cwd
-    - [X] Example `"$ apidocgo server -p 8080"` Small Server for serving statics file in port and showing in console `"server running at http://localhost:port"`
+    - [X] Example `"$ apidocgo -p 8080"` Small Server for serving statics file in port and showing in console `"Listening on http://localhost:8080"`
