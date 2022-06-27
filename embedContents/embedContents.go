@@ -20,7 +20,7 @@ func CreateAssetsFolder(dirName string) error {
 	if _, err := os.Stat(BuildPath); errors.Is(err, os.ErrNotExist) {
 
 		//create apidoc Build Folder
-		createErr := os.Mkdir(BuildPath, os.ModePerm)
+		createErr := os.Mkdir(BuildPath, 0777)
 		if createErr != nil {
 			return createErr
 		}
@@ -36,7 +36,7 @@ func CreateAssetsFolder(dirName string) error {
 		if readFileErr != nil {
 			return readFileErr
 		}
-		ioutil.WriteFile(path.Join(BuildPath, entery.Name()), data, 0666)
+		ioutil.WriteFile(path.Join(BuildPath, entery.Name()), data, 0664)
 	}
 
 	return nil
