@@ -3,6 +3,7 @@ package main
 import (
 	"ApiDocGo/cmd"
 	"ApiDocGo/parser"
+	"log"
 )
 
 const (
@@ -22,5 +23,7 @@ func main() {
 	// fmt.Println(string(json_data))
 
 	parser.WriteDoc(*Documents, ApiDocGoVersion)
+
+	log.Println("Build Done!")
 
 }
