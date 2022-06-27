@@ -1,7 +1,6 @@
 package parser
 
 import (
-	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -35,8 +34,6 @@ func WriteDoc(documents Documents, ApiDocGoVersion string) {
 		ymlFile, _ := ioutil.ReadFile(ymlPath)
 		yaml.Unmarshal(ymlFile, &DefaultConfig)
 	}
-
-	fmt.Println(DefaultConfig)
 
 	tpl, err := template.New("index.gohtml").Funcs(template.FuncMap{
 		"Time": func() string {

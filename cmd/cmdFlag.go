@@ -3,7 +3,6 @@ package cmd
 import (
 	"ApiDocGo/parser"
 	"flag"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -12,37 +11,51 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func ParseFlags() {
-	var init bool
-	flag.BoolVar(&init, "init", true, "initialization config.yml")
-	flag.Parse()
-	values := flag.Args()
+var (
+	Init     bool
+	Port     int
+	ShowHelp bool
+)
 
+func ParseFlags() (hasServe bool) {
+	hasServe = false
+
+	ShowHelp := flag.Bool("h", false, "Print Usage Help")
+	Init := flag.Bool("init", false, "initialization apidocgo.yml")
+	Port := flag.Int("p", 0, "Port Addres for Serve Builded Documents")
+	flag.Parse()
+
+	// values := flag.Args()
 	// if len(values) == 0 {
 	// 	fmt.Println("Usage: apidocgo -i routes/ -o public/apidoc")
 	// 	flag.PrintDefaults()
 	// 	os.Exit(0)
 	// }
 
-	for _, word := range values {
+	if *ShowHelp {
+		flag.PrintDefaults()
+		os.Exit(0)
+	}
 
-		if init {
-			// fmt.Println(strings.ToUpper(word))
-			strPath, err := os.Getwd()
-			if err != nil {
-				log.Fatal(err)
-			}
-			data, err2 := yaml.Marshal(&parser.DefaultConfig)
-			if err2 != nil {
-				log.Fatal(err2)
-			}
-			err3 := ioutil.WriteFile(path.Join(strPath, "apidocgo.yml"), data, 0666)
-			if err3 != nil {
-				log.Fatal(err3)
-			}
-
-		} else {
-			fmt.Println(word)
+	//Create apidocgo.yml Config
+	if *Init {
+		strPath, err := os.Getwd()
+		if err != nil {
+			log.Fatal(err)
+		}
+		data, err2 := yaml.Marshal(&parser.DefaultConfig)
+		if err2 != nil {
+			log.Fatal(err2)
+		}
+		err3 := ioutil.WriteFile(path.Join(strPath, "apidocgo.yml"), data, 0666)
+		if err3 != nil {
+			log.Fatal(err3)
 		}
 	}
+	//serve Builded Document as web Server (note: the "Port" is public access from "cmd" package)
+	if *Port > 0 {
+		hasServe = true
+	}
+
+	return hasServe
 }

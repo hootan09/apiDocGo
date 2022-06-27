@@ -13,7 +13,8 @@ const (
 
 func main() {
 	//parse flags
-	cmd.ParseFlags()
+	hasServe := cmd.ParseFlags()
+	println(hasServe)
 
 	Documents := parser.ReadDoc("./examples") //must be dynamic path by user
 
