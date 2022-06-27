@@ -2,6 +2,9 @@ package main
 
 import (
 	"ApiDocGo/cmd"
+	"ApiDocGo/parser"
+	"encoding/json"
+	"fmt"
 )
 
 const (
@@ -9,16 +12,17 @@ const (
 )
 
 func main() {
-	// Documents := parser.ReadDoc("./examples") //must be dynamic path by user
-
-	// json_data, err := json.Marshal(*Documents)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-	// fmt.Println(string(json_data))
-
-	// parser.WriteDoc(*Documents, ApiDocGoVersion)
-
+	//parse flags
 	cmd.ParseFlags()
+
+	Documents := parser.ReadDoc("./examples") //must be dynamic path by user
+
+	json_data, err := json.Marshal(*Documents)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(string(json_data))
+
+	parser.WriteDoc(*Documents, ApiDocGoVersion)
 
 }

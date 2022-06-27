@@ -1,20 +1,25 @@
 package parser
 
 import (
+	"fmt"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 	"time"
+
+	"gopkg.in/yaml.v3"
 )
 
 // if yml config file not exist must using this
 var DefaultConfig = map[string]string{
-	"name":        "Acme project",
+	"name":        "Api Doc Go project",
 	"version":     "0.0.1",
 	"description": "REST Api Doc",
-	"url":         "http://localhost:8080/apidoc",
+	"url":         "http://localhost:8080/apidocgo",
 }
 
 //TODO
@@ -22,6 +27,17 @@ var DefaultConfig = map[string]string{
 // render index.html with go html/template file
 
 func WriteDoc(documents Documents, ApiDocGoVersion string) {
+
+	//check if apidocgo.yml exist or not
+	wdPath, _ := os.Getwd()
+	ymlPath := path.Join(wdPath, "apidocgo.yml")
+	if _, ymlConfErr := os.Stat(ymlPath); ymlConfErr == nil {
+		ymlFile, _ := ioutil.ReadFile(ymlPath)
+		yaml.Unmarshal(ymlFile, &DefaultConfig)
+	}
+
+	fmt.Println(DefaultConfig)
+
 	tpl, err := template.New("index.gohtml").Funcs(template.FuncMap{
 		"Time": func() string {
 			return time.Now().Format("2006-1-2 15:4:5")

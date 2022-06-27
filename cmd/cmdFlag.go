@@ -18,11 +18,11 @@ func ParseFlags() {
 	flag.Parse()
 	values := flag.Args()
 
-	if len(values) == 0 {
-		fmt.Println("Usage: apidocgo -i routes/ -o public/apidoc")
-		flag.PrintDefaults()
-		os.Exit(0)
-	}
+	// if len(values) == 0 {
+	// 	fmt.Println("Usage: apidocgo -i routes/ -o public/apidoc")
+	// 	flag.PrintDefaults()
+	// 	os.Exit(0)
+	// }
 
 	for _, word := range values {
 
