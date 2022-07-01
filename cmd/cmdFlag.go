@@ -15,6 +15,8 @@ var (
 	Init     bool
 	Port     int
 	ShowHelp bool
+	// InputPath String
+	// OutputPath String
 )
 
 func ParseFlags() (port int) {
@@ -50,6 +52,8 @@ func ParseFlags() (port int) {
 		if err3 != nil {
 			log.Fatal(err3)
 		}
+		log.Println("Creating ", parser.ConfigFileName)
+		os.Exit(0)
 	}
 	//serve Builded Document as web Server (note: the "Port" is public access from "cmd" package)
 	if *Port > 0 {
